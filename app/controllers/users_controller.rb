@@ -21,6 +21,8 @@ class UsersController < ApplicationController
   end
   
   def edit
+  	@user = User.find(params[:id])
+  	@title = 'Editing ' + @user.get_name
   end
   
   def index

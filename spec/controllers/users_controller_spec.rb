@@ -11,17 +11,31 @@ describe UsersController do
     end
   end
 
-  describe "PUT 'edit'" do
+  describe "GET 'edit'" do
   
   	before(:each) do
 			@user = Factory(:user)
 		end
   
     it "should be successful" do
-      put 'edit', :id => @user
+      get 'edit', :id => @user
       response.should be_success
     end
     
+  end
+  
+  describe "PUT 'update'" do
+  
+  	before(:each) do 
+  		@attr = { :name => 'New Name', :username => 'newusername', :password => 'newpass', :password_confirmation => 'newpass' }
+  	end
+  
+  	describe "success" do
+  		
+  		it "should modify the user's information"
+  		
+  	end
+  	
   end
 
   describe "GET 'show'" do
