@@ -27,19 +27,60 @@ describe UsersController do
     	
     end
     
+    describe "for signed-in users" do
+    	
+    	before(:each) do
+    		@wrong_user = Factory(:user, :username => Factory.next(:username), :display_name => Factory.next(:display_name))
+    	end
+    	
+    	it "should deny access except to the right user" do
+    		controller.sign_in(@wrong_user)
+    		get :edit, :id => @user
+    		response.should redirect_to(root_path)
+    	end
+    	
+    end	
+    
   end
   
   describe "PUT 'update'" do
   
   	before(:each) do 
   		@attr = { :name => 'New Name', :username => 'newusername', :password => 'newpass', :password_confirmation => 'newpass' }
+  		@user = Factory(:user)
   	end
   
-  	describe "success" do
-  		
-  		it "should modify the user's information"
-  		
+  	describe "for non-signed-in users" do
+  	
+  		it "should deny access" do
+  			put :update, :id => @user, :user => @attr
+  			flash[:notice].should =~ /please sign in/i
+  			response.should redirect_to(signin_path)
+  		end
+  	
   	end
+  	
+  	describe "for signed-in users" do
+  		
+  		before(:each) do
+    		@wrong_user = Factory(:user, :username => Factory.next(:username), :display_name => Factory.next(:display_name))
+    	end
+    	
+    	it "should deny access except to the right user" do
+    		controller.sign_in(@wrong_user)
+    		put :update, :id => @user, :user => @attr
+    		response.should redirect_to(root_path)
+    	end
+    	
+    	it "should change the user's attributes" do
+    		controller.sign_in(@user)
+    		put :update, :id => @user, :user => @attr
+    		@user.reload
+    		@user.name.should == @attr[:name]
+    		@user.username.should == @attr[:username]
+    	end
+    
+    end
   	
   end
 

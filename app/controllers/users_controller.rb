@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
 
-	before_filter :ensure_logged_in, :only => [:edit, :show]
+	before_filter :ensure_logged_in, :only => [:edit, :update, :show]
+	before_filter :ensure_correct_user, :only => [:edit, :update]
 
 	def new
   	@user = User.new

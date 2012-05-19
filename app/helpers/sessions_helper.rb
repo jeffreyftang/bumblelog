@@ -34,6 +34,23 @@ module SessionsHelper
 		redirect_to(signin_path)
 	end
 	
+	def ensure_correct_user
+		@user = User.find(params[:id])
+		redirect_to(root_path) unless @user == current_user
+	end
+	
+	def members_only
+		deny_access unless current_user.member?
+	end
+	
+	def admins_only
+		deny_access unless current_user.admin?
+	end
+	
+	def owner_only
+		deny_access unless current_user.owner?
+	end
+	
 	# Friendly Redirect
 	
 	def redirect_back_or_to(target)
@@ -54,5 +71,10 @@ module SessionsHelper
 		def clear_stored_location
 			session[:stored_location] = nil
 		end
-
+		
+		def deny_access
+			flash[:notice] = "You don't have permission to do that."
+			redirect_to(root_path)
+		end
+		
 end
