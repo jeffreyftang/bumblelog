@@ -1,0 +1,68 @@
+require 'digest'
+
+class User < ActiveRecord::Base
+
+	attr_accessor :password
+	attr_accessible :name, :username, :display_name, :password, :password_confirmation
+	
+	has_many :pages
+
+	username_regex = /\A[a-z](\w)+([a-z]|\d)\z/i
+	display_name_regex = /((\A\z)|(\A([a-z]([\w\.\s])+([a-z]|\d))))\z/i
+
+	validates :username, :presence => true,
+									     :uniqueness => { :case_sensitive => false },
+									  	 :length => { :within => (3..15) },
+									  	 :format => { :with => username_regex }
+									  	 
+	validates :password, :presence => true,
+											 :confirmation => true,
+											 :length => { :within => (6..40) }
+									   																		
+	validates :name, :presence => true
+	
+	validates :display_name, :uniqueness => { :case_sensitive => false },
+													 :format => { :with => display_name_regex },
+													 :length => { :maximum => 20 }
+	
+	before_save :encrypt_password
+	
+	def has_password?(pass)
+		encrypted_password == encrypt(pass)
+	end
+	
+	# Access Level Methods
+	
+	def owner?
+		access_level >= 3
+	end
+	
+	def admin? # return true if user is at least an admin
+		access_level >= 2
+	end
+	
+	def member? # return true if user is at least a member
+		access_level >= 1	
+	end	
+	
+	private
+	
+		def encrypt_password
+			# ensure that the salt changes whenever the user changes his password
+			self.salt = make_salt unless has_password?(password)
+			self.encrypted_password = encrypt(password)
+		end
+		
+		def encrypt(string_to_encrypt)
+			secure_hash("#{salt}--#{string_to_encrypt}")
+		end
+		
+		def make_salt
+			secure_hash("#{Time.now.utc}--#{password}")
+		end
+		
+		def secure_hash(string_to_hash)
+			Digest::SHA2.hexdigest(string_to_hash)
+		end
+
+end
