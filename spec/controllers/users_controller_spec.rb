@@ -17,9 +17,14 @@ describe UsersController do
 			@user = Factory(:user)
 		end
   
-    it "should be successful" do
-      get 'edit', :id => @user
-      response.should be_success
+    describe "for non-signed-in users" do
+    
+    	it "should deny access" do
+    		get :edit, :id => @user
+    		flash[:notice].should =~ /please sign in/i
+    		response.should redirect_to(signin_path)
+    	end
+    	
     end
     
   end
@@ -43,21 +48,38 @@ describe UsersController do
   	before(:each) do
 			@user = Factory(:user)
 		end
+		
+		describe "for non-signed-in users" do
+		
+			it "should deny access" do
+				get :show, :id => @user
+				response.should redirect_to(signin_path)
+			end
+			
+		end
+		
+		describe "for signed-in users" do
+		
+			before(:each) do
+				controller.sign_in(@user)
+			end
   
-    it "should be successful" do
-      get 'show', :id => @user
-      response.should be_success
-    end
+  	  it "should be successful" do
+    	  get 'show', :id => @user
+      	response.should be_success
+   	 end
     
-    it "should have h1 with the user's display name" do
-    	get 'show', :id => @user
-    	response.should have_selector("h1", :content => @user.display_name)
-    end
+    	it "should have h1 with the user's display name" do
+    		get 'show', :id => @user
+    		response.should have_selector("h1", :content => @user.display_name)
+    	end
     
-    it "should have h1 with the user's name if there's no display name" do
-    	no_display_name_user = Factory(:user, :display_name => '', :username => Factory.next(:username))
-    	get 'show', :id => no_display_name_user
-    	response.should have_selector("h1", :content => no_display_name_user.name)
+   	 it "should have h1 with the user's name if there's no display name" do
+    		no_display_name_user = Factory(:user, :display_name => '', :username => Factory.next(:username))
+	    	get 'show', :id => no_display_name_user
+  	  	response.should have_selector("h1", :content => no_display_name_user.name)
+  		end
+  		
   	end    	 
     
   end

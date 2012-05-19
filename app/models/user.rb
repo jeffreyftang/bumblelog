@@ -17,7 +17,14 @@ class User < ActiveRecord::Base
 									  	 
 	validates :password, :presence => true,
 											 :confirmation => true,
-											 :length => { :within => (6..40) }
+											 :length => { :within => (6..40) },
+											 :on => :create
+											 
+	validates :password, :presence => true,
+											 :confirmation => true,
+											 :length => { :within => (6..40) },
+											 :on => :update,
+											 :unless => Proc.new { |u| u.password.blank? }
 									   																		
 	validates :name, :presence => true
 	
@@ -25,7 +32,7 @@ class User < ActiveRecord::Base
 													 :length => { :maximum => 25 },
 													 :allow_blank => true
 	
-	before_save :encrypt_password
+	before_save :encrypt_password, :unless => Proc.new { |u| u.password.blank? }
 	
 	def has_password?(pass)
 		encrypted_password == encrypt(pass)
@@ -37,6 +44,11 @@ class User < ActiveRecord::Base
 		else
 			name
 		end
+	end
+	
+	def self.authenticate(submitted_username, submitted_password)
+		user = find_by_username(submitted_username)
+		user && user.has_password?(submitted_password) ? user : nil
 	end
 	
 	# Access Level Methods

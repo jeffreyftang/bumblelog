@@ -194,5 +194,27 @@ describe User do
   	end
 	
 	end  		
+	
+	describe "authentication" do
+	
+		describe "authenticate method" do
+		
+			before(:each) do
+				@user = User.create!(@attr)
+			end
+		
+			it "should return nil if the credentials don't match" do
+				user = User.authenticate(@attr[:username], 'wrongpass')
+				user.should be_nil
+			end
+			
+			it "should return the user if the credentials match" do
+				user = User.authenticate(@attr[:username], @attr[:password])
+				user.should == @user
+			end
+		
+		end
+		
+	end
 
 end

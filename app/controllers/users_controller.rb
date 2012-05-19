@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
-  
-  def new
+
+	before_filter :ensure_logged_in, :only => [:edit, :show]
+
+	def new
   	@user = User.new
   	@title = 'Sign up'
   end
@@ -24,6 +26,19 @@ class UsersController < ApplicationController
   	@user = User.find(params[:id])
   	@title = 'Editing ' + @user.get_name
   end
+  
+  def update
+  	@user = User.find(params[:id])
+  	params[:user].delete_if { |k, v| v.blank? && (k != 'display_name') }
+  	if @user.update_attributes(params[:user])
+  		flash[:success] = 'Update successful.'
+  		redirect_to @user
+  	else
+  		@title = 'Editing ' + @user.get_name
+  		render 'edit'
+  	end
+  end
+  	
   
   def index
   end

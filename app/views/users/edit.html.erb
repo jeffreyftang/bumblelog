@@ -1,2 +1,36 @@
-<h1>Users#edit</h1>
-<p>Find me in app/views/users/edit.html.erb</p>
+<h1>Editing <%= @user.get_name %></h1>
+
+<%= form_for(@user) do |f| %>
+	<% if @user.errors.any? %>
+		<div id="error_list">
+			<ul id="errors">
+				<% @user.errors.full_messages.each do |m| %>
+					<li><%= m %></li>
+				<% end %>
+			</ul>
+		</div>
+	<% end %>
+	<div class="field">
+    <%= f.label :name, 'Your name' %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :username, 'Your username' %><br />
+    <%= f.text_field :username %>
+  </div>
+  <div class="field">
+  	<%= f.label :display_name, 'Your display name' %><br />
+  	<%= f.text_field :display_name %>
+  </div>
+  <div class="field">
+    <%= f.label :password %><br />
+    <%= f.password_field :password %>
+  </div>
+  <div class="field">
+    <%= f.label :password_confirmation, "Confirmation" %><br />
+    <%= f.password_field :password_confirmation %>
+  </div>
+	<div class="actions">
+		<%= f.submit "Submit changes" %>
+	</div>
+<% end %>
