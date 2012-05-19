@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
 	has_many :pages
 
 	username_regex = /\A[a-z](\w)+([a-z]|\d)\z/i
-	display_name_regex = /((\A\z)|(\A([a-z]([\w\.\s])+([a-z]|\d))))\z/i
+	# display_name_regex = /((\A\z)|(\A([a-z]([\w\.\s])+([a-z]|\d))))\z/i
 
 	validates :username, :presence => true,
 									     :uniqueness => { :case_sensitive => false },
@@ -22,13 +22,21 @@ class User < ActiveRecord::Base
 	validates :name, :presence => true
 	
 	validates :display_name, :uniqueness => { :case_sensitive => false },
-													 :format => { :with => display_name_regex },
-													 :length => { :maximum => 20 }
+													 :length => { :maximum => 25 },
+													 :allow_blank => true
 	
 	before_save :encrypt_password
 	
 	def has_password?(pass)
 		encrypted_password == encrypt(pass)
+	end
+	
+	def get_name
+		unless display_name.blank?
+			display_name
+		else
+			name
+		end
 	end
 	
 	# Access Level Methods

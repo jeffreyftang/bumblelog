@@ -146,9 +146,10 @@ describe User do
 				same_display_name.should_not be_valid
 			end
 			
-			it "should accept only letters, numbers, underscores, periods, spaces" do
-				invalid = User.new(@attr.merge(:username => 'jfsmith', :display_name => 'abcdef#g'))
-				invalid.should_not be_valid
+			it "should not be longer than 25 chars" do
+				long_name = 'a' * 26
+				long_name_user = User.new(@attr.merge(:username => long_name))
+				long_name_user.should_not be_valid
 			end
 		
 		end

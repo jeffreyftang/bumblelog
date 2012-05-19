@@ -1,11 +1,6 @@
 Bumblelog::Application.routes.draw do
-  get "users/index"
-
-  get "users/edit"
-
-  get "users/show"
-
-  get "users/new"
+  
+  resources :users
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
