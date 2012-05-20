@@ -2,6 +2,8 @@ require 'spec_helper'
 
 describe PostsController do
 
+	render_views
+
   describe "GET 'new'" do
   
   	before(:each) do
@@ -40,6 +42,35 @@ describe PostsController do
   end
 
   describe "GET 'show'" do
+  
+  	before(:each) do
+  		@user = Factory(:user)
+  		@post = Factory(:post, :user => @user)
+  	end
+  	
+  	it "should deny access for non-logged-in users" do
+  		get :show, :id => @post
+  		response.should redirect_to signin_path
+  	end
+  	
+  	describe "for logged in users" do
+  	
+  		before(:each) do
+  			controller.sign_in(@user)
+  		end
+  	
+  		it "should be successful" do
+  			get :show, :id => @post
+  			response.should be_success
+  		end
+  		
+  		it "should show the post" do
+  			get :show, :id => @post
+  			response.should have_selector('h1', :content => @post.title)
+  			response.should have_selector('div#post_content', :content => @post.content)
+  		end 
+  		
+  	end
    
   end
 

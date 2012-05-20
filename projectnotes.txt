@@ -4,6 +4,7 @@
 - Add avatars
 - Add users index action
 - handle changing post author when deleting a user
+- Keep signed in users from accessing sign in/up pages
 
 # Posts #
 - slug (for URLs)

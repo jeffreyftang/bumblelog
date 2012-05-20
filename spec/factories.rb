@@ -17,3 +17,9 @@ end
 Factory.sequence :display_name do |n|
 	"J. Smith #{n}"
 end
+
+Factory.define :post do |post|
+	post.title 'Hello World!'
+	post.content 'This is your blog post.'
+	post.association :user
+end

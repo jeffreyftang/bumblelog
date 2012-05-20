@@ -5,6 +5,7 @@ class PostsController < ApplicationController
 
   def new
   	@post = Post.new
+  	@title = 'Create new post'
   end
   
   def create
@@ -14,6 +15,11 @@ class PostsController < ApplicationController
   end
 
   def show
+		if params[:id]
+  		@post = Post.find_by_id(params[:id])
+  	else
+  		@post = Post.find_by_slug(params[:post][:slug])
+  	end 		
   end
 
   def index
