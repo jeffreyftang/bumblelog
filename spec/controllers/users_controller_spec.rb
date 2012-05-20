@@ -172,6 +172,49 @@ describe UsersController do
   			
   	end
   	
-  end	
+  end
+  
+  describe "DELETE 'destroy'" do
+  	
+  	before(:each) do 
+  		@user = Factory(:user)
+  	end
+  
+  	describe "for a non-signed-in user" do
+  	
+  		it "should deny access" do
+  			delete :destroy, :id => @user
+  			response.should redirect_to(signin_path)
+  		end
+  		
+  	end
+  			
+  	
+  	describe "for a non-admin-level user" do
+  	
+  		it "should deny access" do
+  			controller.sign_in(@user)
+  			delete :destroy, :id => @user
+  			response.should redirect_to(root_path)
+  		end
+  		
+  	end
+  	
+  	describe "for an admin-level user" do
+  		
+  		before(:each) do
+  			@admin_user = Factory(:user, :username => 'adminname', :display_name => 'admindisplay', :access_level => 2 )
+  		end
+  	
+  		it "should destroy the user" do
+  			controller.sign_in(@admin_user)
+  			lambda do
+  				delete :destroy, :id => @user
+  			end.should change(User, :count).by(-1)
+  		end
+  		
+  	end
+  	
+  end
 
 end

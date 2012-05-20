@@ -1,7 +1,8 @@
 class UsersController < ApplicationController
 
-	before_filter :ensure_logged_in, :only => [:edit, :update, :show]
+	before_filter :ensure_logged_in, :only => [:edit, :update, :show, :destroy]
 	before_filter :ensure_correct_user, :only => [:edit, :update]
+	before_filter :admins_only, :only => [:destroy]
 
 	def new
   	@user = User.new
@@ -16,7 +17,12 @@ class UsersController < ApplicationController
   def create
   	@user = User.new(params[:user])
   	if @user.save
+  		if @user == User.first && @user == User.last
+  			@user.access_level = 3
+  			@user.save
+  		end
   		flash[:success] = 'Welcome!'
+  		sign_in @user
   		redirect_to user_path(@user)
   	else
   		render 'new'
@@ -40,6 +46,16 @@ class UsersController < ApplicationController
   	end
   end
   	
+  def destroy
+  	user = User.find(params[:id])
+  	unless user == current_user || user.owner?
+  		user.destroy
+  		flash[:success] = 'User deleted.'
+  	else
+  		flash[:notice] = "You don't have permission to delete this user."
+  	end
+  	redirect_to(users_path)
+  end
   
   def index
   end

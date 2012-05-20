@@ -15,5 +15,9 @@ class SessionsController < ApplicationController
   		redirect_back_or_to user
   	end
   end
+  
+  def destroy
+  	sign_out
+  end
 
 end

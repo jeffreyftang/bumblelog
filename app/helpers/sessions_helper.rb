@@ -11,7 +11,8 @@ module SessionsHelper
 	
 	def sign_out
 		session[:remember_token] = nil
-		redirect_to root
+		self.current_user = nil
+		redirect_to root_path
 	end
 	
 	def current_user=(user)
@@ -36,7 +37,10 @@ module SessionsHelper
 	
 	def ensure_correct_user
 		@user = User.find(params[:id])
-		redirect_to(root_path) unless @user == current_user
+		unless @user == current_user
+			flash[:notice] = "You don't have permission to do that."	
+			redirect_to(root_path)
+		end
 	end
 	
 	def members_only
