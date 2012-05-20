@@ -1,5 +1,13 @@
 Bumblelog::Application.routes.draw do
   
+  get "posts/new"
+
+  get "posts/edit"
+
+  get "posts/show"
+
+  get "posts/index"
+
   resources :users
   resources :sessions, :only => [:new, :create, :destroy]
   
