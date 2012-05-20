@@ -1,8 +1,15 @@
 <h1>New Post</h1>
 
 <%= form_for @post do |f| %>
-	Title
-	<% f.text_field :title %>
-	Content
-	<% f.text_field :content %>
+	<div class="field">
+		Title<br />
+		<%= f.text_field :title %>
+	</div>
+	<div class="field">
+		Content<br />
+		<%= f.text_area :content %>
+	</div>
+	<div class="actions">
+		<%= f.submit 'Publish' %>
+	</div>
 <% end %>

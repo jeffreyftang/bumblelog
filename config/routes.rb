@@ -9,6 +9,7 @@ Bumblelog::Application.routes.draw do
   get "posts/index"
 
   resources :users
+  resources :posts
   resources :sessions, :only => [:new, :create, :destroy]
   
   match '/signup', :to => 'users#new'

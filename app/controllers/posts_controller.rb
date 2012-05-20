@@ -4,6 +4,7 @@ class PostsController < ApplicationController
 	before_filter :members_only, :only => [:new, :create, :edit]
 
   def new
+  	@post = Post.new
   end
   
   def create
