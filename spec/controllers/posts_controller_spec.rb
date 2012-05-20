@@ -36,9 +36,97 @@ describe PostsController do
     end
         
   end
+  
+  describe "POST 'create'" do
+  
+  	before(:each) do
+  		@user = Factory(:user)
+  		@attr = { :title => 'Hello World!', :content => 'This is your post.' }
+  	end
+  
+  	describe "for signed-in members" do
+  	
+  		before(:each) do
+  			@user.make_member
+  			controller.sign_in(@user)
+  		end
+  
+  		it "should create the post" do
+  			lambda do
+  				post :create, :post => @attr
+  			end.should change(Post, :count).by(1)
+  		end  			
+  		
+  	end
+  
+  end
 
   describe "GET 'edit'" do
+  
+  	before(:each) do
+  		@user = Factory(:user)
+  		@user.make_member
+  		@wrong_user = Factory(:user, :username => 'myname', :display_name => 'My Name')
+  		@wrong_user.make_member
+  		@post = Factory(:post, :user => @user)
+  	end
+  
+  	it "should deny access to wrong users" do		
+  		controller.sign_in(@wrong_user)
+  		get :edit, :id => @post
+  		response.should redirect_to root_path
+  	end
+  	
+  	it "should allow access by admin users" do
+  		controller.sign_in(@wrong_user)
+  		@wrong_user.make_admin
+  		get :edit, :id => @post
+  		response.should be_success		
+		end
+		
+		it "should allow access by the correct user" do
+		  controller.sign_in(@user)
+  		get :edit, :id => @post
+  		response.should be_success 
+  	end
 
+  end
+  
+  describe "PUT 'update'" do
+  
+  	before(:each) do
+  		@user = Factory(:user)
+  		@user.make_member
+  		@wrong_user = Factory(:user, :username => 'myname', :display_name => 'My Name')
+  		@wrong_user.make_member
+  		@post = Factory(:post, :user => @user)
+  		@attr = { :title => 'New title', :content => 'New content' }
+  	end
+  
+  	it "should require login" do
+  		put :update, :id => @post, :post => @attr
+  		response.should redirect_to signin_path
+  	end
+  	
+  	it "should deny access to wrong users" do
+  		controller.sign_in(@wrong_user)
+  		put :update, :id => @post, :post => @attr
+  		response.should redirect_to root_path
+  	end
+  	
+  	it "should allow access by admin users" do
+  		controller.sign_in(@wrong_user)
+  		@wrong_user.make_admin
+  		put :update, :id => @post, :post => @attr
+  		response.should redirect_to edit_post_path(@post)
+  	end
+  		
+  	it "should allow access to the right user" do 	
+  		controller.sign_in(@user)
+  		put :update, :id => @post, :post => @attr
+  		response.should redirect_to edit_post_path(@post) 				
+		end
+  	 
   end
 
   describe "GET 'show'" do

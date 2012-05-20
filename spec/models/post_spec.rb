@@ -8,6 +8,7 @@ describe Post do
 			@attr = { :title => 'Hello World!', 
 								:content => 'The quick brown fox jumped over the lazy dogs'
 							}
+		end
 	
 		it "should create an instance given valid attributes"
 		

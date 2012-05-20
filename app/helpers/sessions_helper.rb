@@ -29,11 +29,24 @@ module SessionsHelper
 		ask_to_sign_in unless signed_in?
 	end
 	
-	def ensure_correct_user
-		@user = User.find(params[:id])
-		unless @user == current_user
-			flash[:notice] = "You don't have permission to do that."	
-			redirect_to(root_path)
+#	def ensure_correct_user
+#		@user = User.find(params[:id])
+#		unless @user == current_user
+#			flash[:notice] = "You don't have permission to do that."	
+#			redirect_to(root_path)
+#		end
+#	end
+	
+	def ensure_correct_user_or_admin
+		if params[:controller] == 'users'
+			@user = User.find(params[:id])
+		elsif params[:controller] == 'posts'
+			@post = Post.find(params[:id])
+			@user = @post.user
+		end
+		unless current_user.admin? || current_user == @user
+			flash[:notice] = "You don't have permission to do that."
+			redirect_to root_path
 		end
 	end
 	
@@ -47,6 +60,11 @@ module SessionsHelper
 	
 	def owner_only
 		deny_access unless current_user.owner?
+	end
+	
+	def deny_access
+			flash[:notice] = "You don't have permission to do that."
+			redirect_to(root_path)
 	end
 	
 	# Friendly Redirect
@@ -74,11 +92,6 @@ module SessionsHelper
 			store_location
 			flash[:notice] = 'Please sign in to access this page.'
 			redirect_to(signin_path)
-		end
-		
-		def deny_access
-			flash[:notice] = "You don't have permission to do that."
-			redirect_to(root_path)
 		end
 		
 end
