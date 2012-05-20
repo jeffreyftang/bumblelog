@@ -3,6 +3,7 @@
 - rescue database duplicate entry error
 - Add avatars
 - Add users index action
+- handle changing post author when deleting a user
 
 # Posts #
 - slug (for URLs)

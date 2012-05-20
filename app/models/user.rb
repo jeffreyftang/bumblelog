@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
 	attr_accessor :password
 	attr_accessible :name, :username, :display_name, :password, :password_confirmation
 	
-	has_many :pages
+	has_many :posts
 
 	username_regex = /\A[a-z](\w)+([a-z]|\d)\z/i
 	# display_name_regex = /((\A\z)|(\A([a-z]([\w\.\s])+([a-z]|\d))))\z/i

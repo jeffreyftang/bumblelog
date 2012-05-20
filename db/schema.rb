@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120520021243) do
+ActiveRecord::Schema.define(:version => 20120520023957) do
 
   create_table "posts", :force => true do |t|
     t.string   "title"
@@ -32,6 +32,7 @@ ActiveRecord::Schema.define(:version => 20120520021243) do
     t.string   "display_name"
     t.string   "salt"
     t.integer  "access_level",       :default => 0
+    t.boolean  "published",          :default => false
   end
 
   add_index "users", ["username"], :name => "index_users_on_username", :unique => true
