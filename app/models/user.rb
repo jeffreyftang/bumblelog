@@ -65,6 +65,22 @@ class User < ActiveRecord::Base
 		access_level >= 1	
 	end	
 	
+	def make_owner
+		self.access_level = 3
+	end
+	
+	def make_admin
+		self.access_level = 2
+	end
+	
+	def make_member
+		self.access_level = 1
+	end
+	
+	def revoke_rights
+		self.access_level = 0
+	end
+	
 	private
 	
 		def encrypt_password

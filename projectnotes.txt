@@ -1,6 +1,6 @@
 # Users #
 - Add a way to adjust user's access level
-- rescue database duplicate entry error
++ rescue database duplicate entry error 
 - Add avatars
 - Add users index action
 - handle changing post author when deleting a user
@@ -9,3 +9,6 @@
 - slug (for URLs)
 - draft function
 - published at function
+
+# Forms #
+- standardize form html

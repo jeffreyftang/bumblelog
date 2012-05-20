@@ -18,7 +18,7 @@ class UsersController < ApplicationController
   	@user = User.new(params[:user])
   	if @user.save
   		if @user == User.first && @user == User.last
-  			@user.access_level = 3
+  			@user.make_owner
   			@user.save
   		end
   		flash[:success] = 'Welcome!'
@@ -26,7 +26,9 @@ class UsersController < ApplicationController
   		redirect_to user_path(@user)
   	else
   		render 'new'
-  	end
+  	end 	
+  	rescue ActiveRecord::StatementInvalid
+  		redirect_to root_path 	
   end
   
   def edit
@@ -59,5 +61,7 @@ class UsersController < ApplicationController
   
   def index
   end
+  
+
 
 end
