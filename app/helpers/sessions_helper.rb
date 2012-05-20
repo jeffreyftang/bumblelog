@@ -29,12 +29,6 @@ module SessionsHelper
 		ask_to_sign_in unless signed_in?
 	end
 	
-	def ask_to_sign_in
-		store_location
-		flash[:notice] = 'Please sign in to access this page.'
-		redirect_to(signin_path)
-	end
-	
 	def ensure_correct_user
 		@user = User.find(params[:id])
 		unless @user == current_user
@@ -74,6 +68,12 @@ module SessionsHelper
 	
 		def clear_stored_location
 			session[:stored_location] = nil
+		end
+		
+		def ask_to_sign_in
+			store_location
+			flash[:notice] = 'Please sign in to access this page.'
+			redirect_to(signin_path)
 		end
 		
 		def deny_access

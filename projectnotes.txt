@@ -1,0 +1,4 @@
+- Add a way to adjust user's access level
+- rescue database duplicate entry error
+- Add avatars
+- Add users index action
