@@ -1,7 +1,8 @@
 <div class="post">
 	<section>
 		<h1 class="post_title"><%= post.title %></h1>
-		by <%= post.user.get_name %>
+		by <%= post.user.get_name %><br />
+		<%= post.created_at %>
 		<div class="post_content">
 			<p>
 				<%= post.content %>
