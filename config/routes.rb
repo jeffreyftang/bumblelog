@@ -11,6 +11,8 @@ Bumblelog::Application.routes.draw do
   match '/blog', :to => 'pages#blog'
   match '/cpanel', :to => 'pages#cpanel'
   
+  # match '/:year/:month/:slug', :to => 'posts#show', :constraints => { :year => /\A([0-9]){4}\z/
+  
   root :to => 'pages#home'
 
   # The priority is based upon order of creation:
