@@ -48,7 +48,7 @@ class Post < ActiveRecord::Base
 		end
 	
 		def generate_slug(input)
-			input.strip.downcase.gsub(/[\s.\/_]/, ' ').squeeze.gsub(/[\s]/, '-').gsub(/[^\w-]/, '')
+			input.strip.downcase.gsub(/[\s.\/_]/, ' ').squeeze(' ').gsub(/[\s]/, '-').gsub(/[^\w-]/, '')
 		end
 
 end

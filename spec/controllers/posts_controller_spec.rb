@@ -55,6 +55,15 @@ describe PostsController do
   			lambda do
   				post :create, :post => @attr
   			end.should change(Post, :count).by(1)
+  		end
+  		
+  		describe "slug" do
+  		
+  			it "should require or auto-generate a slug" do
+  				post :create, :post => @attr
+  				assigns(:post).slug.should == 'hello-world'
+  			end
+  		
   		end  			
   		
   	end

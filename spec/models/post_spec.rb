@@ -37,8 +37,6 @@ describe Post do
 	
 	describe "draft/published status"
 	
-	describe "slug"			
-		
-	end
+	describe "slug"
 	
 end
