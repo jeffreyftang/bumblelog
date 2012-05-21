@@ -11,6 +11,7 @@ class PostsController < ApplicationController
   
   def create
   	@post = current_user.posts.build(params[:post])
+  	@post.published = true if params[:commit] == 'Publish'
   	if @post.save
   		flash[:success] = 'Post saved.'
   		redirect_to edit_post_path(@post)
@@ -40,7 +41,8 @@ class PostsController < ApplicationController
   		@post = Post.find_by_id(params[:id])
   	else
   		@post = Post.find_by_slug(params[:slug])
-  	end 		
+  	end
+  	raise ActiveRecord::RecordNotFound.new('not found') unless @post.published?	
   end
 
   def destroy

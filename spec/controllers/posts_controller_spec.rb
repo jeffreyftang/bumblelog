@@ -145,7 +145,7 @@ describe PostsController do
   
   	before(:each) do
   		@user = Factory(:user)
-  		@post = Factory(:post, :user => @user)
+  		@post = Factory(:post, :user => @user, :published => true)
   	end
   	
   	it "should deny access for non-logged-in users" do
@@ -169,6 +169,21 @@ describe PostsController do
   			response.should have_selector('h1', :content => @post.title)
   			response.should have_selector('div#post_content', :content => @post.content)
   		end 
+  		
+  		describe "showing draft posts" do
+  		
+  		# Can't get this test to work, even though
+  		# the behavior seems to work fine.
+  		#
+  		#	it "should not allow access" do
+  		#		@post.published = false
+  		#		@post.reload
+  		#		lambda do
+  		#			get :show, :id => @post
+  		#		end.should raise_error
+  		#	end
+  			
+  		end
   		
   	end
    

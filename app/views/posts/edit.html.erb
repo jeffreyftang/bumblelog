@@ -9,6 +9,11 @@
 		Content<br />
 		<%= f.text_area :content %>
 	</div>
+	<div class="field">
+		Publish post?<br />
+		<%= hidden_field_tag('post[published]', false) %>
+		<%= check_box_tag('post[published]', true, @post.published) %>
+	</div>
 	<div class="actions">
 		<%= f.submit 'Save' %>
 	</div>

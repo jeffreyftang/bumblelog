@@ -1,6 +1,6 @@
 class Post < ActiveRecord::Base
 
-	attr_accessible :title, :content
+	attr_accessible :title, :content, :published
 	
 	belongs_to :user
 	
