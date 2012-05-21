@@ -1,7 +1,9 @@
 <h1><%= @user.get_name %></h1>
 
-<% if @user.admin? %>
+<% if @user.owner? %>
 	Site owner.
+<% elsif @user.admin? %>
+	Administrator.
 <% end %>
 
 More user profile information will go here. Possibly a list of posts as well.

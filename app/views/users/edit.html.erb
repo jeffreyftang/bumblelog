@@ -30,6 +30,16 @@
     <%= f.label :password_confirmation, "Confirmation" %><br />
     <%= f.password_field :password_confirmation %>
   </div>
+  <% if current_user.admin? %>
+  	<% unless @user.owner? %>
+  		<div class="field">
+  			This user should be a(n):
+  			<%= f.select(:access_level, options_for_select([['Viewer', 0], ['Member', 1], ['Administrator', 2]], @user.access_level)) %>
+  		</div>
+  	<% else %>
+  		<%= @user.get_name + ' is the site owner.' %>
+  	<% end %>
+  <% end %>
 	<div class="actions">
 		<%= f.submit "Submit changes" %>
 	</div>

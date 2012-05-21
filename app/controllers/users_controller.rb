@@ -19,7 +19,6 @@ class UsersController < ApplicationController
   	if @user.save
   		if @user == User.first && @user == User.last
   			@user.make_owner
-  			@user.save
   		end
   		flash[:success] = 'Welcome!'
   		sign_in @user
@@ -39,7 +38,17 @@ class UsersController < ApplicationController
   def update
   	@user = User.find(params[:id])
   	params[:user].delete_if { |k, v| v.blank? && (k != 'display_name') }
-  	if @user.update_attributes(params[:user])
+  	access_lvl = params[:user].delete(:access_level)
+		
+		# Modify attributes other than access level
+  	@user.attributes = params[:user]
+  	
+  	# Set the access level manually if the current user is an admin
+  	if current_user.admin?
+  		@user.access_level = access_lvl
+  	end
+  	
+  	if @user.save
   		flash[:success] = 'Update successful.'
   		redirect_to @user
   	else
