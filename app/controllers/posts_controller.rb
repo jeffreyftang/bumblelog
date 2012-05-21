@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
 
 	before_filter :ensure_logged_in
-	before_filter :members_only, :only => [:new, :create, :edit, :update]
+	before_filter :members_only, :only => [:new, :create, :edit, :update, :destroy]
 	before_filter :ensure_correct_user_or_admin, :only => [:edit, :update, :destroy]
 
   def new
@@ -43,7 +43,15 @@ class PostsController < ApplicationController
   	end 		
   end
 
-  def index
+  def destroy
+  	@post = Post.find(params[:id])
+  	if @post.destroy
+  		flash[:success] = 'Post deleted.'
+  		redirect_to root_path
+  	else
+  		flash[:error] = 'There was a problem deleting the post.'
+  		redirect_to root_path
+  	end
   end
 
 end

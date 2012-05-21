@@ -1,7 +1,7 @@
 Bumblelog::Application.routes.draw do
 
   resources :users
-  resources :posts
+  resources :posts, :except => :index
   resources :sessions, :only => [:new, :create, :destroy]
   
   match '/signup', :to => 'users#new'

@@ -126,6 +126,18 @@ describe PostsController do
   		put :update, :id => @post, :post => @attr
   		response.should redirect_to edit_post_path(@post) 				
 		end
+		
+		describe "success" do
+		
+			it "should change the post's attributes" do
+				controller.sign_in(@user)
+				put :update, :id => @post, :post => @attr
+				@post.reload
+				@post.title.should == @attr[:title]
+				@post.content.should == @attr[:content]
+			end
+
+		end 
   	 
   end
 
@@ -161,6 +173,45 @@ describe PostsController do
   	end
    
   end
+  
+  describe "DELETE 'destroy'" do
+  	
+  	before(:each) do
+  		@user = Factory(:user)
+  		@user.make_member
+  		@post = Factory(:post, :user => @user)
+  		@wrong_user = Factory(:user, :username => 'myusername', :display_name => '')
+  		@wrong_user.make_member
+  	end
+  	
+  	it "should deny access to the wrong user and not delete the post" do
+  		controller.sign_in(@wrong_user)
+  		lambda do
+  			delete :destroy, :id => @post
+  			response.should redirect_to root_path
+  		end.should_not change(Post, :count)
+  	end
+  	
+  	describe "if user is correct user or admin" do
+  	
+  		it "should delete the post if the user is the correct user" do
+  			@controller.sign_in(@user)
+  			lambda do
+  				delete :destroy, :id => @post
+  			end.should change(Post, :count).by(-1)
+  		end
+  		
+  		it "should delete the post if the user is an admin" do
+  			@controller.sign_in(@wrong_user)
+  			@wrong_user.make_admin
+  			lambda do
+  				delete :destroy, :id => @post
+  			end.should change(Post, :count).by(-1)
+  		end
+  		
+  	end
+  	  
+  end  		
 
   describe "GET 'index'" do
     
