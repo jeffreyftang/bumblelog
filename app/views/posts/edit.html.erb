@@ -10,9 +10,13 @@
 		<%= f.text_area :content %>
 	</div>
 	<div class="field">
-		Publish post?<br />
-		<%= hidden_field_tag('post[published]', false) %>
-		<%= check_box_tag('post[published]', true, @post.published) %>
+		Post status<br />
+		<% if @post.published? %>
+		<% selected = 'Published' %>
+		<% else %>
+		<% selected = 'Draft' %>
+		<% end %>
+		<%= f.select(:published, options_for_select([['Published', true], ['Draft', false]], @post.published?))  %>
 	</div>
 	<div class="actions">
 		<%= f.submit 'Save' %>

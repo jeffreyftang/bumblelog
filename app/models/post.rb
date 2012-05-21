@@ -15,5 +15,13 @@ class Post < ActiveRecord::Base
 		self.published = false
 		self.save
 	end
+	
+	def published_status_as_string
+		if self.published?
+			'Published'
+		else
+			'Draft'
+		end
+	end
 
 end
