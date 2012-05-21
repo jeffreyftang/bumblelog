@@ -199,6 +199,7 @@ describe PostsController do
   			lambda do
   				delete :destroy, :id => @post
   			end.should change(Post, :count).by(-1)
+  			Post.find_by_id(@post).should be_nil
   		end
   		
   		it "should delete the post if the user is an admin" do
@@ -207,14 +208,11 @@ describe PostsController do
   			lambda do
   				delete :destroy, :id => @post
   			end.should change(Post, :count).by(-1)
+  			Post.find_by_id(@post).should be_nil
   		end
   		
   	end
   	  
   end  		
-
-  describe "GET 'index'" do
-    
-  end
 
 end
