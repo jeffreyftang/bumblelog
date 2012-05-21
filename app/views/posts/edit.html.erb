@@ -6,6 +6,10 @@
 		<%= f.text_field :title %>
 	</div>
 	<div class="field">
+		<%= f.label 'Slug' %><br />
+		<%= f.text_field :slug %>
+	</div>
+	<div class="field">
 		<%= f.label 'Content' %><br />
 		<%= f.text_area :content %>
 	</div>
@@ -19,6 +23,6 @@
 		<%= f.select(:published, options_for_select([['Published', true], ['Draft', false]], @post.published?))  %>
 	</div>
 	<div class="actions">
-		<%= f.submit 'Save' %>
+		<%= f.submit 'Save changes' %>
 	</div>
 <% end %>

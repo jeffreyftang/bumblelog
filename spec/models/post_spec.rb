@@ -18,15 +18,15 @@ describe Post do
 			end.should change(Post, :count).by(1)
 		end
 		
-#		it "should require a title" do
-#			post = @user.posts.build(@attr.merge(:title => ''))
-#			post.should_not be_valid
-#		end
-#		
-#		it "should require content" do
-#			post = @user.posts.build(@attr.merge(: => ''))
-#			post.should_not be_valid
-#		end
+		it "should require a title" do
+			post = @user.posts.build(@attr.merge(:title => ''))
+			post.should_not be_valid
+		end
+		
+		it "should require content" do
+			post = @user.posts.build(@attr.merge(:content => ''))
+			post.should_not be_valid
+		end
 		
 		it "should have an author" do
 			post = Post.new(@attr)
@@ -37,6 +37,8 @@ describe Post do
 	
 	describe "draft/published status"
 	
-	describe "slug"
+	describe "slug"			
+		
+	end
 	
 end
