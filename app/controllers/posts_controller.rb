@@ -12,6 +12,9 @@ class PostsController < ApplicationController
   def create
   	@post = current_user.posts.build(params[:post])
   	@post.published = true if params[:commit] == 'Publish'
+  	if @post.published? && @post.published_at.blank?
+  		@post.published_at = DateTime.now
+  	end
   	if @post.save
   		flash[:success] = 'Post saved.'
   		redirect_to edit_post_path(@post)
@@ -27,6 +30,11 @@ class PostsController < ApplicationController
   
   def update
   	# @post = Post.find(params[:id]) is taken care of by the before_filter
+  	
+  	# Set the published at time if the post was previously unpublished.
+  	if @post.published_at.blank? && params[:post][:published] && params[:post][:published_at].blank?
+  		params[:post][:published_at] = DateTime.now
+  	end
   	if @post.update_attributes(params[:post])
   		flash[:success] = 'Post updated.'
   		redirect_to edit_post_path(@post)

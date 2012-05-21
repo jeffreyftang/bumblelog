@@ -1,6 +1,6 @@
 class Post < ActiveRecord::Base
 
-	attr_accessible :title, :content, :published, :slug
+	attr_accessible :title, :content, :published, :published_at, :slug
 	
 	belongs_to :user
 	
@@ -15,9 +15,9 @@ class Post < ActiveRecord::Base
 									 :allow_blank => true
 									 
 	
-	default_scope :order => 'posts.created_at DESC'
+	default_scope :order => 'posts.published_at DESC'
 	
-	before_save :check_slug
+	before_save :set_slug
 	
 	def publish
 		self.published = true
@@ -39,7 +39,7 @@ class Post < ActiveRecord::Base
 	
 	private
 	
-		def check_slug
+		def set_slug
 			if slug.blank?
 				self.slug = generate_slug(title)
 			else

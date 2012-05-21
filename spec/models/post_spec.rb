@@ -33,10 +33,19 @@ describe Post do
 			post.should_not be_valid
 		end
 	
-	end
+		describe "post order" do
 	
-	describe "draft/published status"
+			before(:each) do
+				@post1 = Factory(:post, :user => @user, :created_at => 1.day.ago, :published_at => 1.hour.ago)
+				@post2 = Factory(:post, :user => @user, :slug => 'the-new-slug', :created_at => 1.hour.ago, :published_at => 1.day.ago)
+			end
 	
-	describe "slug"
+			it "should have the posts in the right order" do
+				Post.all.should == [@post1, @post2]
+			end
+	
+		end
+	
+	end	
 	
 end

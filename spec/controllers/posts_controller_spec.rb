@@ -64,7 +64,21 @@ describe PostsController do
   				assigns(:post).slug.should == 'hello-world'
   			end
   		
-  		end  			
+  		end
+  		
+  		describe "published at" do
+  		
+  			it "should not set published at if post is saved as draft" do
+  				post :create, :post => @attr
+  				assigns(:post).published_at.should be_blank
+  			end
+  			
+  			it "should set published at if post is published" do
+  				post :create, :post => @attr.merge(:published_at => DateTime.now)
+  				assigns(:post).published_at.should_not be_blank  			
+  			end
+  			
+  		end 			
   		
   	end
   
@@ -138,12 +152,36 @@ describe PostsController do
 		
 		describe "success" do
 		
-			it "should change the post's attributes" do
+			before(:each) do
 				controller.sign_in(@user)
+			end
+		
+			it "should change the post's attributes" do
 				put :update, :id => @post, :post => @attr
 				@post.reload
 				@post.title.should == @attr[:title]
 				@post.content.should == @attr[:content]
+			end
+			
+			describe "published at" do
+			
+				it "should not set published at if post is a draft" do
+					put :update, :id => @post, :post => @attr
+					assigns(:post).published_at.should be_blank
+				end
+				
+				it "should not set published at if post was already published" do
+					old_date = 1.day.ago
+					the_post = Factory(:post, :user => @user, :slug => 'the-other-slug', :published => true, :published_at => old_date)
+					put :update, :id => the_post, :post => @attr
+					assigns(:post).published_at.should == old_date
+				end 
+				
+				it "should set published at if post published for first time" do
+					put :update, :id => @post, :post => @attr.merge(:published => true)
+					assigns(:post).published_at.should_not be_blank
+				end
+				
 			end
 
 		end 
