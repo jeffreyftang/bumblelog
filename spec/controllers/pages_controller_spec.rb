@@ -3,23 +3,29 @@ require 'spec_helper'
 describe PagesController do
 
   describe "GET 'home'" do
-    it "should be successful" do
-      get 'home'
-      response.should be_success
+    
+    it "should require signin" do
+    	get :home
+    	response.should redirect_to signin_path
     end
+    
   end
 
   describe "GET 'blog'" do
-    it "should be successful" do
-      get 'blog'
-      response.should be_success
+   
+    it "should require signin" do
+    	get :blog
+    	response.should redirect_to signin_path
+   
     end
   end
 
   describe "GET 'cpanel'" do
-    it "should be successful" do
-      get 'cpanel'
-      response.should be_success
+   
+    it "should require signin" do
+    	get :cpanel
+    	response.should redirect_to signin_path
+   
     end
   end
 

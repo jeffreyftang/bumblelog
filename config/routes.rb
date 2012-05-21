@@ -1,11 +1,5 @@
 Bumblelog::Application.routes.draw do
 
-  get "pages/home"
-
-  get "pages/blog"
-
-  get "pages/cpanel"
-
   resources :users
   resources :posts, :except => :index
   resources :sessions, :only => [:new, :create, :destroy]
@@ -14,7 +8,10 @@ Bumblelog::Application.routes.draw do
   match '/signin', :to => 'sessions#new'
   match '/signout', :to => 'sessions#destroy'
   
-  root :to => 'users#new'
+  match '/blog', :to => 'pages#blog'
+  match '/cpanel', :to => 'pages#cpanel'
+  
+  root :to => 'pages#home'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
