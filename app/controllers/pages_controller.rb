@@ -6,6 +6,7 @@ class PagesController < ApplicationController
   end
 
   def blog
+  	@posts = Post.all.delete_if { |p| !p.published? }
   end
 
   def cpanel

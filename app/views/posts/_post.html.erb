@@ -1,0 +1,14 @@
+<div class="post">
+	<section>
+		<h1 class="post_title"><%= post.title %></h1>
+		by <%= post.user.get_name %>
+		<div class="post_content">
+			<p>
+				<%= post.content %>
+			</p>
+		</div>
+	</section>
+	<% if current_user == post.user || current_user.admin? %>
+		Edit this post.
+	<% end %>
+</div>
