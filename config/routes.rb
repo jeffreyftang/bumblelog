@@ -1,5 +1,11 @@
 Bumblelog::Application.routes.draw do
 
+  get "pages/home"
+
+  get "pages/blog"
+
+  get "pages/cpanel"
+
   resources :users
   resources :posts, :except => :index
   resources :sessions, :only => [:new, :create, :destroy]
