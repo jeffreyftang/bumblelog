@@ -172,16 +172,12 @@ describe PostsController do
   		
   		describe "showing draft posts" do
   		
-  		# Can't get this test to work, even though
-  		# the behavior seems to work fine.
-  		#
-  		#	it "should not allow access" do
-  		#		@post.published = false
-  		#		@post.reload
-  		#		lambda do
-  		#			get :show, :id => @post
-  		#		end.should raise_error
-  		#	end
+  			it "should not allow access" do
+  				@post.unpublish
+  				lambda do
+  					get :show, :id => @post
+  				end.should raise_error
+  			end
   			
   		end
   		

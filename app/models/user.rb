@@ -67,18 +67,22 @@ class User < ActiveRecord::Base
 	
 	def make_owner
 		self.access_level = 3
+		self.save
 	end
 	
 	def make_admin
 		self.access_level = 2
+		self.save
 	end
 	
 	def make_member
 		self.access_level = 1
+		self.save
 	end
 	
 	def revoke_rights
 		self.access_level = 0
+		self.save
 	end
 	
 	private
