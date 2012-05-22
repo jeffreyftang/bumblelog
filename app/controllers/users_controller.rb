@@ -3,6 +3,8 @@ class UsersController < ApplicationController
 	before_filter :ensure_logged_in, :only => [:edit, :update, :show, :destroy]
 	before_filter :ensure_correct_user_or_admin, :only => [:edit, :update]
 	before_filter :admins_only, :only => [:destroy]
+	
+	before_filter :non_signed_in_only, :only => [:new, :create]
 
 	def new
   	@user = User.new

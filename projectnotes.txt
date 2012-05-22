@@ -7,9 +7,9 @@
 - Keep signed in users from accessing sign in/up pages
 
 # Posts #
-- slug (for URLs)
-- draft function
-- published at function
++ slug (for URLs)
++ draft function
++ published at function
 
 # Forms #
 - standardize form html

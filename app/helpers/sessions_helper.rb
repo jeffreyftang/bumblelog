@@ -29,14 +29,6 @@ module SessionsHelper
 		ask_to_sign_in unless signed_in?
 	end
 	
-#	def ensure_correct_user
-#		@user = User.find(params[:id])
-#		unless @user == current_user
-#			flash[:notice] = "You don't have permission to do that."	
-#			redirect_to(root_path)
-#		end
-#	end
-	
 	def ensure_correct_user_or_admin
 		if params[:controller] == 'users'
 			@user = User.find(params[:id])
@@ -48,6 +40,10 @@ module SessionsHelper
 			flash[:notice] = "You don't have permission to do that."
 			redirect_to root_path
 		end
+	end
+	
+	def non_signed_in_only
+		redirect_to root_path if signed_in?
 	end
 	
 	def members_only
