@@ -1,33 +1,36 @@
-<h1>Create an Account</h1>
-
-<%= form_for(@user) do |f| %>
+<div id="signup">
+	<div class="icon">
+		<%= image_tag 'signup-icon.png', :alt => 'Create an Account' %>
+	</div>
 	<% if @user.errors.any? %>
-		<div id="error_list">
-			<ul id="errors">
-				<% @user.errors.full_messages.each do |m| %>
-					<li><%= m %></li>
-				<% end %>
-			</ul>
+			<div id="error_list">
+				<ul id="errors">
+					<% @user.errors.full_messages.each do |m| %>
+						<li><%= m %></li>
+					<% end %>
+				</ul>
+			</div>
+		<% end %>
+	<%= form_for(@user) do |f| %>
+		<div class="field">
+    	<%= f.label :name, 'Your name' %>
+    	<%= f.text_field :name %>
+  	</div>
+  	<div class="field">
+    	<%= f.label :username, 'Choose a username' %>
+    	<%= f.text_field :username %>
+  	</div>
+  	<div class="field">
+    	<%= f.label :password %>
+    	<%= f.password_field :password %>
+  	</div>
+  	<div class="field">
+    	<%= f.label :password_confirmation, "Confirm your password" %>
+    	<%= f.password_field :password_confirmation %>
+  	</div>
+		<div class="actions">
+			<%= f.submit "Sign me up!" %>
 		</div>
 	<% end %>
-	<div class="field">
-    <%= f.label :name, 'Your name' %><br />
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :username, 'Choose a username' %><br />
-    <%= f.text_field :username %>
-  </div>
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password %>
-  </div>
-  <div class="field">
-    <%= f.label :password_confirmation, "Confirmation" %><br />
-    <%= f.password_field :password_confirmation %>
-  </div>
-	<div class="actions">
-		<%= f.submit "Sign me up!" %>
-	</div>
-<% end %>
+</div>
 

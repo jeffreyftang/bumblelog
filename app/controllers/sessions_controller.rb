@@ -1,5 +1,7 @@
 class SessionsController < ApplicationController
 
+	layout 'signin'
+	
 	before_filter :non_signed_in_only, :only => [:new, :create]
   
   def new

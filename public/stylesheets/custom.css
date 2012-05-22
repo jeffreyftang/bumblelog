@@ -1,0 +1,122 @@
+pre { display: none; }
+
+html, body {
+	height: 100%;
+	}
+
+#main {
+	width: 980px;
+	height: 100% !important;
+	margin: 0 auto;
+	position: relative;
+	}
+	
+a:hover {
+	text-decoration: none;
+	color: #06C;
+	}
+	
+/* Flash */
+
+.flash {
+	background-color: #fffa7f;
+	text-align: center;
+	border-top: 1px solid #DDD;
+	border-bottom: 1px solid #DDD;
+	margin: 5px auto -20px;
+	padding: 5px;
+	color: #666;
+	font-size: 16px;
+	z-index: 1;
+}
+
+.icon {
+	margin: 0 auto;
+	}
+	
+.icon img {
+	display:block;
+	margin: 0 auto;
+	z-index: -1;
+	position: relative;
+	}
+
+.field_with_errors input {
+	border: 3px solid #b50000;
+	}
+	
+.field_with_errors label {
+	font-style: italic;
+	}
+	
+#error_list {
+	float: right;
+	width: 250px;
+	margin-top: 40px;
+	margin-right: 20px;
+	}
+	
+ul#errors li {
+	font-size: 12px;
+	color: #b50000;
+	margin-bottom: 5px;
+	}
+	
+/* Signup Page */
+
+#signup {
+	font-size: 16px;
+	position: relative;
+	}
+
+#signup .icon {
+	margin-top: -120px;
+	}
+	
+#signup .actions input#user_submit {
+	width: 100px;
+	height: 30px;
+	float: right;
+	margin-top: 20px;
+	padding: 10px;
+	}
+	
+
+/* Signin Page */
+
+#login {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	height: 30%;
+	width: 50%;
+	margin: -40% 0 0 -25%;
+	font-size: 16px;
+	}
+	
+form { 
+	display: block;
+	}
+	
+#login form, #signup form {
+	width: 376px;
+	margin: 20px auto 0;
+	}
+
+#login form input, #signup form input {
+	font-size: 24px;
+	padding: 5px;
+	width: 363px;
+	margin-top: 0;
+	}
+	
+#session_submit {
+	height: 1px;
+	width: 1px;
+	margin-left: -9999px;
+}
+
+#signup-message {
+	width: 376px;
+	margin: 0px auto;
+	}

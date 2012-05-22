@@ -26,6 +26,7 @@ class UsersController < ApplicationController
   		sign_in @user
   		redirect_to user_path(@user)
   	else
+  		flash.now[:notice] = 'There was a problem creating your account.'
   		render 'new'
   	end 	
   	rescue ActiveRecord::StatementInvalid
