@@ -1,8 +1,8 @@
 <div class="post">
 	<section>
-		<h1 class="post_title"><%= post.title %></h1>
+		<h1 class="post_title"><%= link_to post.title, post.get_path %></h1>
 		by <%= post.user.get_name %><br />
-		<%= post.created_at %>
+		<%= post.published_at %>
 		<div class="post_content">
 			<p>
 				<%= post.content %>
@@ -10,6 +10,6 @@
 		</div>
 	</section>
 	<% if current_user == post.user || current_user.admin? %>
-		Edit this post.
+		<%= link_to 'Edit this post.', edit_post_path(post.id) %>
 	<% end %>
 </div>

@@ -16,7 +16,7 @@ class PostsController < ApplicationController
   		@post.published_at = DateTime.now
   	end
   	if @post.save
-  		flash[:success] = 'Post saved.'
+  		flash[:success] = "Post saved."
   		redirect_to edit_post_path(@post)
   	else
   		flash.now[:error] = 'There was a problem saving your post.'
@@ -49,6 +49,9 @@ class PostsController < ApplicationController
   		@post = Post.find_by_id(params[:id])
   	else
   		@post = Post.find_by_slug(params[:slug])
+  		unless params[:year].to_i == @post.published_at.year && params[:month].to_i == @post.published_at.month
+  			@post = nil
+  		end
   	end
   	raise ActiveRecord::RecordNotFound.new('not found') unless @post.published?	
   end

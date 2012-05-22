@@ -11,7 +11,7 @@ Bumblelog::Application.routes.draw do
   match '/blog', :to => 'pages#blog'
   match '/cpanel', :to => 'pages#cpanel'
   
-  # match '/:year/:month/:slug', :to => 'posts#show', :constraints => { :year => /\A([0-9]){4}\z/
+  match '/:year/:month/:slug', :to => 'posts#show', :constraints => { :year => /([0-9]){4}/, :month => /([0-9]){2}/ }
   
   root :to => 'pages#home'
 
