@@ -73,14 +73,24 @@ ul#errors li {
 	margin-top: -120px;
 	}
 	
-#signup .actions input#user_submit {
-	width: 100px;
-	height: 30px;
+#signup form input#user_submit {
+	width: 122px;
+	height: 42px;
 	float: right;
 	margin-top: 20px;
-	padding: 10px;
+	background: transparent url('/images/signup-button.png') no-repeat;
+	border: none 0px;
+	padding: 0;
+	text-indent: -9999px;
 	}
 	
+#signup form input#user_submit:hover {
+	background: transparent url('/images/signup-button.png') 0px -45px no-repeat;
+	}
+
+#signup form input#user_submit:active {
+	background: transparent url('/images/signup-button.png') 0px -90px no-repeat;
+	}
 
 /* Signin Page */
 

@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
 
+	layout 'signin'
+
 	before_filter :ensure_logged_in, :only => [:edit, :update, :show, :destroy]
 	before_filter :ensure_correct_user_or_admin, :only => [:edit, :update]
 	before_filter :admins_only, :only => [:destroy]
