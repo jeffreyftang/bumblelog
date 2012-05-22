@@ -1,5 +1,8 @@
-<h1><%= @post.title %></h1>
-
-<div id="post_content">
-	<%= @post.content %>
+<div class="post single">
+	<section>
+		<h1><%= @post.title %></h1>
+		<div id="post_content">
+			<%= raw(@post.content) %>
+		</div>
+	</section>
 </div>

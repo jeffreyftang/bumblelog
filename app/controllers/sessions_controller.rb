@@ -11,9 +11,9 @@ class SessionsController < ApplicationController
   def create
   	user = User.authenticate(params[:session][:username], params[:session][:password])
   	unless user
-  		flash.now[:error] = "Invalid username/password combination."
+  		flash[:error] = "Invalid username/password combination."
   		@title = 'Sign in'
-  		render 'new'
+  		redirect_to signin_path
   	else
   		sign_in user
   		redirect_back_or_to user

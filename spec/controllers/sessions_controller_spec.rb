@@ -21,9 +21,9 @@ describe SessionsController do
   			@attr = { :username => 'username', :password => 'invalid' }
   		end
   	
-  		it "should render the new page" do
+  		it "should go to the signin page" do
   			post :create, :session => @attr
-  			response.should render_template('new')
+  			response.should redirect_to signin_path
   		end
   		
   		it "should have a flash.now message" do

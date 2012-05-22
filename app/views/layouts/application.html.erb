@@ -10,9 +10,11 @@
 		<% flash.each do |key, value| %>
 				<div class="flash"><%= raw(value) %></div>
 			<% end %>
-		<div id="main">
-			<%= yield %>
-			<%= render 'shared/navbar' %>
+		<div id="container">
+			<div class="left">
+				<%= yield %>
+			</div>
+			<%= render 'shared/sidebar' %>
 			<%= debug(params) if Rails.env.development? %>
 		</div>
 	</body>

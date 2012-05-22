@@ -2,19 +2,19 @@
 
 <%= form_for @post do |f| %>
 	<div class="field">
-		<%= f.label 'Title' %><br />
+		<%= f.label 'Title:' %>
 		<%= f.text_field :title %>
 	</div>
 	<div class="field">
-		<%= f.label 'Slug' %><br />
+		<%= f.label 'Slug:' %>
 		<%= f.text_field :slug %>
 	</div>
 	<div class="field">
-		<%= f.label 'Content' %><br />
+		<%= f.label 'Content:' %>
 		<%= f.text_area :content %>
 	</div>
 	<div class="field">
-		Post status<br />
+		<%= f.label 'Post status: ' %>
 		<% if @post.published? %>
 		<% selected = 'Published' %>
 		<% else %>
