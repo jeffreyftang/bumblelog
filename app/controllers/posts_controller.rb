@@ -16,7 +16,11 @@ class PostsController < ApplicationController
   		@post.published_at = DateTime.now
   	end
   	if @post.save
-  		flash[:success] = "Post saved."
+  		if @post.published?
+  			flash[:success] = "Post published. <a href='" + @post.get_path + "'>See it here.</a>"
+  		else
+  			flash[:success] = "Post saved."
+  		end
   		redirect_to edit_post_path(@post)
   	else
   		flash.now[:error] = 'There was a problem saving your post.'
@@ -36,7 +40,11 @@ class PostsController < ApplicationController
   		params[:post][:published_at] = DateTime.now
   	end
   	if @post.update_attributes(params[:post])
-  		flash[:success] = 'Post updated.'
+  		if @post.published?
+  			flash[:success] = "Post updated. <a href='" + @post.get_path + "'>See it here.</a>"
+  		else
+  			flash[:success] = "Post updated."
+  		end
   		redirect_to edit_post_path(@post)
   	else
   		flash[:error] = 'There was a problem editing the post.'
