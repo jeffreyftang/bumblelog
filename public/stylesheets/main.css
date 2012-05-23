@@ -334,6 +334,10 @@ h1.post-title {
 	list-style-type: none;
 	padding: 0;
 	}
+
+#posts-list {
+	margin-left: -10px;
+	}
 	
 #users-list li, #posts-list li {
 	padding: 10px 0;
@@ -341,7 +345,11 @@ h1.post-title {
 	}
 	
 #posts-list li {
-	padding: 20px 0;
+	padding: 20px 0 20px 10px;
+	}
+	
+#posts-list li.draft {
+	background-color: #EFEFEF;
 	}
 	
 #posts-list h2 {

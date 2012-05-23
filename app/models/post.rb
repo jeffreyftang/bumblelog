@@ -49,6 +49,14 @@ class Post < ActiveRecord::Base
 		end
 	end
 	
+	def last_modified_date
+		unless updated_at.blank?
+			date = updated_at.strftime('%-d') + ' ' + updated_at.strftime('%b') + ' ' + updated_at.strftime('%Y')
+		else
+			date = created_at.strftime('%-d') + ' ' + created_at.strftime('%b') + ' ' + created_at.strftime('%Y')
+		end
+	end
+	
 	private
 	
 		def set_slug

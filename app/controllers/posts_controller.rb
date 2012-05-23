@@ -77,6 +77,14 @@ class PostsController < ApplicationController
   
   def index
   	@posts = Post.all
+  	@posts.sort_by! do |p|
+  		if p.published?
+  			p.published_at
+  		else
+  			p.updated_at
+  		end
+  	end
+  	@posts.reverse!
   end
 
 end
