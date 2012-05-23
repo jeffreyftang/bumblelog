@@ -9,7 +9,7 @@ Bumblelog::Application.routes.draw do
   match '/signout', :to => 'sessions#destroy'
   
   match '/blog', :to => 'pages#blog'
-  match '/cpanel', :to => 'pages#cpanel'
+  match '/cpanel', :to => 'posts#index'
   
   match '/:year/:month/:slug', :to => 'posts#show', :constraints => { :year => /([0-9]){4}/, :month => /([0-9]){2}/ }
   

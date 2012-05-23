@@ -1,2 +1,16 @@
-<h1>Posts#index</h1>
-<p>Find me in app/views/posts/index.html.erb</p>
+<div class="left">
+	<h1>All Posts</h1>
+	<ul id="posts-list">
+		<% @posts.each do |post| %>
+			<li>
+				<div class="postlet">
+					<h2><%= link_to post.title, post.get_path %></h2>
+					Posted <span class="grey"><%= post.published_date %></span> by <%= link_to post.user.get_name, user_path(post.user) %>
+					<% if current_user.admin? %>
+						&middot; <%= link_to 'Edit', edit_post_path(post) %>
+					<% end %>					
+				</div>
+			</li>
+		<% end %>
+	</ul>
+</div>

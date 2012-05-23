@@ -20,13 +20,4 @@ describe PagesController do
     end
   end
 
-  describe "GET 'cpanel'" do
-   
-    it "should require signin" do
-    	get :cpanel
-    	response.should redirect_to signin_path
-   
-    end
-  end
-
 end

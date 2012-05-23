@@ -1,11 +1,16 @@
 <div id="sidebar">
 	<ul>
-		<li><%= link_to 'Edit Posts', posts_path %></li>
-		<li><%= link_to 'Edit Users', users_path %></li>
+		<li><%= link_to 'New Post', new_post_path %></li>
 	</ul>
 	<ul>
-		<li><%= link_to 'Edit Profile', cpanel_path %></li>
+		<li><%= link_to 'All Posts', posts_path %></li>
+		<li><%= link_to 'All Users', users_path %></li>
 	</ul>
+	<% if signed_in? %>
+		<ul>
+			<li><%= link_to 'Edit Profile', edit_user_path(current_user) %></li>
+		</ul>
+	<% end %>
 	<ul>
 		<li><%= link_to 'Back to Blog', blog_path %></li>
 		<li><%= link_to 'Back to Home', root_path %></li>

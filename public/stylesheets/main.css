@@ -165,6 +165,26 @@ form select {
 	margin-left: 5px;
 	}
 	
+.actions input {
+	background-color: #017001;
+	color: #FFF;
+	width: 150px;
+	float: right;
+	margin-left: 10px;
+	}
+
+.actions #draft-button input {
+	background-color: #e37204;
+	}
+	
+.actions input:hover {
+	background-color: #01a001;
+	}
+		
+.actions #draft-button input:hover {
+	background-color: #e39c04;
+	}
+
 /* Signin, Signup */
 
 #signin, #signup {
@@ -191,9 +211,10 @@ form select {
 /* Signin */
 
 #session_submit {
-	height: 1px;
-	width: 1px;
-	margin-left: -9999px;
+	height: 1px !important;
+	width: 1px !important;
+	margin-left: -9999px !important;
+	float: none !important;
 	}
 	
 #signup-message {
@@ -202,7 +223,7 @@ form select {
 	
 /* Signup */
 
-#signup form input#user_submit {
+/* #signup form input#user_submit {
 	width: 122px;
 	height: 42px;
 	font-size: 16px;
@@ -223,6 +244,7 @@ form select {
 	background: transparent url('/images/signup-button.png') 0px -90px no-repeat;
 	}
 
+*/
 
 /* 2-column layout */
 
@@ -305,21 +327,30 @@ h1.post-title {
 	
 #sidebar ul {
 	list-style-type: none;
+	font-size: 18px;
 	}
 	
-#users-list {
+#users-list, #posts-list {
 	list-style-type: none;
 	padding: 0;
 	}
 	
-#users-list li {
+#users-list li, #posts-list li {
 	padding: 10px 0;
 	border-bottom: 1px dotted #BBB;
 	}
 	
+#posts-list li {
+	padding: 20px 0;
+	}
+	
+#posts-list h2 {
+	margin:0;
+	}
+	
 	
 /* Editing Posts */
-
+/*
 form.edit_post input#post_submit {
 	width: 135px;
 	height: 42px;
@@ -338,3 +369,4 @@ form.edit_post input#post_submit:hover {
 form.edit_post input#post_submit:active {
 	background: transparent url('/images/save-changes-button.png') 0 -90px no-repeat;
 	}
+*/

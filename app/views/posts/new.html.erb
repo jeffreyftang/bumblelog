@@ -1,24 +1,25 @@
-<h1>New Post</h1>
-
-<%= form_for @post do |f| %>
-	<div class="field">
-		<%= f.label :title, 'Title' %>
-		<%= f.text_field :title %>
-	</div>
-	<div class="field">
-		<%= f.label 'Slug' %>
-		<%= f.text_field :slug %>
-	</div>
-	<div class="field">
-		<%= f.label :content, 'Content' %>
-		<%= f.text_area :content %>
-	</div>
-	<div class="actions">
-		<div id="publish-button">
-			<%= f.submit 'Publish' %>
+<div class="left">
+	<h1>New Post</h1>
+	<%= form_for @post do |f| %>
+		<div class="field">
+			<%= f.label :title, 'Title' %>
+			<%= f.text_field :title %>
 		</div>
-		<div id="draft-button">
-			<%= f.submit 'Save as draft' %>
+		<div class="field">
+			<%= f.label 'Slug' %>
+			<%= f.text_field :slug %>
 		</div>
-	</div>
-<% end %>
+		<div class="field">
+			<%= f.label :content, 'Content' %>
+			<%= f.text_area :content %>
+		</div>
+		<div class="actions">
+			<div id="publish-button">
+				<%= f.submit 'Publish' %>
+			</div>
+			<div id="draft-button">
+				<%= f.submit 'Save as draft' %>
+			</div>
+		</div>
+	<% end %>
+</div>

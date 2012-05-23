@@ -1,40 +1,41 @@
-<h1>Editing <%= @user.get_name %></h1>
-
-<%= form_for(@user) do |f| %>
-	<% if @user.errors.any? %>
-		<div id="error_list">
-			<ul id="errors">
-				<% @user.errors.full_messages.each do |m| %>
-					<li><%= m %></li>
-				<% end %>
-			</ul>
+<div class="left">
+	<h1>Editing <%= @user.get_name %></h1>
+	<%= form_for(@user) do |f| %>
+		<% if @user.errors.any? %>
+			<div id="error_list">
+				<ul id="errors">
+					<% @user.errors.full_messages.each do |m| %>
+						<li><%= m %></li>
+					<% end %>
+				</ul>
+			</div>
+		<% end %>
+		<div class="field">
+			<%= f.label :name, 'Name' %><br />
+			<%= f.text_field :name %>
+		</div>
+		<div class="field">
+			<%= f.label :username, 'Username' %><br />
+			<%= f.text_field :username %>
+		</div>
+		<div class="field">
+			<%= f.label :display_name, 'Display name' %><br />
+			<%= f.text_field :display_name %>
+		</div>
+		<div class="field">
+			<%= f.label :password %><br />
+			<%= f.password_field :password %>
+		</div>
+		<div class="field">
+			<%= f.label :password_confirmation, "Confirmation" %><br />
+			<%= f.password_field :password_confirmation %>
+		</div>
+		<div class="field">
+			This user is a(n):
+			<%= f.select(:access_level, options_for_select([['Viewer', 0], ['Member', 1], ['Administrator', 2], ['Owner', 3]], :selected => @user.access_level, :disabled => 3), {}, :disabled => !current_user.admin? || @user.owner?) %>
+		</div>
+		<div class="actions">
+			<%= f.submit "Submit changes" %>
 		</div>
 	<% end %>
-	<div class="field">
-    <%= f.label :name, 'Your name' %><br />
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :username, 'Your username' %><br />
-    <%= f.text_field :username %>
-  </div>
-  <div class="field">
-  	<%= f.label :display_name, 'Your display name' %><br />
-  	<%= f.text_field :display_name %>
-  </div>
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password %>
-  </div>
-  <div class="field">
-    <%= f.label :password_confirmation, "Confirmation" %><br />
-    <%= f.password_field :password_confirmation %>
-  </div>
-  <div class="field">
-  	This user is a(n):
-  	<%= f.select(:access_level, options_for_select([['Viewer', 0], ['Member', 1], ['Administrator', 2], ['Owner', 3]], :selected => @user.access_level, :disabled => 3), {}, :disabled => !current_user.admin? || @user.owner?) %>
-  </div>
-	<div class="actions">
-		<%= f.submit "Submit changes" %>
-	</div>
-<% end %>
+</div>
