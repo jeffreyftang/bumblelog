@@ -1,28 +1,30 @@
-<h1>Editing Post</h1>
-
-<%= form_for @post do |f| %>
-	<div class="field">
-		<%= f.label 'Title:' %>
-		<%= f.text_field :title %>
-	</div>
-	<div class="field">
-		<%= f.label 'Slug:' %>
-		<%= f.text_field :slug %>
-	</div>
-	<div class="field">
-		<%= f.label 'Content:' %>
-		<%= f.text_area :content %>
-	</div>
-	<div class="field">
-		<%= f.label 'Post status: ' %>
-		<% if @post.published? %>
-		<% selected = 'Published' %>
-		<% else %>
-		<% selected = 'Draft' %>
-		<% end %>
-		<%= f.select(:published, options_for_select([['Published', true], ['Draft', false]], @post.published?))  %>
-	</div>
-	<div class="actions">
-		<%= f.submit 'Save changes' %>
-	</div>
-<% end %>
+<div class="left">
+	<h1>Edit <%= link_to 'Post', @post.get_path %></h1>
+	
+	<%= form_for @post do |f| %>
+		<div class="field">
+			<%= f.label 'Title:' %>
+			<%= f.text_field :title %>
+		</div>
+		<div class="field">
+			<%= f.label 'Slug:' %>
+			<%= f.text_field :slug %>
+		</div>
+		<div class="field">
+			<%= f.label 'Content:' %>
+			<%= f.text_area :content %>
+		</div>
+		<div class="field">
+			<%= f.label 'Post status: ' %>
+			<% if @post.published? %>
+			<% selected = 'Published' %>
+			<% else %>
+			<% selected = 'Draft' %>
+			<% end %>
+			<%= f.select(:published, options_for_select([['Published', true], ['Draft', false]], @post.published?))  %>
+		</div>
+		<div class="actions">
+			<%= f.submit 'Save changes' %>
+		</div>
+	<% end %>
+</div>

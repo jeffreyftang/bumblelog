@@ -38,11 +38,13 @@ class Post < ActiveRecord::Base
 	end
 	
 	def get_path
-		path = '/' + published_at.strftime('%Y') + '/' + published_at.strftime('%m') + '/' + slug
+		unless published_at.blank?
+			path = '/' + published_at.strftime('%Y') + '/' + published_at.strftime('%m') + '/' + slug
+		end
 	end
 	
 	def published_date
-		if published_at
+		unless published_at.blank?
 			date = published_at.strftime('%-d') + ' ' + published_at.strftime('%b') + ' ' + published_at.strftime('%Y')
 		end
 	end

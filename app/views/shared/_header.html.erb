@@ -1,2 +1,15 @@
 <div id="header">
+	<div id="header-inner">
+		<% if blog? %>
+			<div id="blog-logo">
+				<%= link_to 'Blog', blog_path %>
+			</div>
+			<div id="navbar">
+				<%= link_to 'HOME', root_path %>
+				<%= link_to 'BLOG', blog_path %>
+				<%= link_to 'CONTACT', root_path %>
+				<%= link_to 'MANAGE', cpanel_path %>
+			</div>
+		<% end %>
+	</div>
 </div>

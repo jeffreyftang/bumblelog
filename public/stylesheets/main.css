@@ -34,9 +34,97 @@ span.grey {
 /* Header */
 
 #header {
-	height: 200px;
+	height: 140px;
 	margin: 0;
-	background-color: #BBB;
+	border-top: 10px solid #b50000;
+	}
+	
+#header-inner {
+	height: 100%;
+	width: 880px;
+	margin: 0 auto;
+	}
+
+#blog-logo {
+	width: 400px;
+	height: 100%;
+	float: left;
+	background: transparent url('/images/logo.png') -45px no-repeat;
+	}
+	
+#blog-logo a {
+	display: block;
+	margin: 30px 0 0 20px;
+	height: 80px;
+	width: 370px;
+	text-indent: -9999px;
+	}
+	
+#navbar {
+	width: 350px;
+	margin-left: 20px;
+	float: left;
+	font-size: 15px;
+	font-weight: bold;
+	margin-top: 58px;
+	}
+	
+#navbar a {
+	display: block;
+	margin-right: 15px;
+	float: left;
+	}
+	
+/* Footer */
+
+#footer {
+	width: 880px;
+	height: 50px;
+	margin: 50px auto 0;
+	text-align: center;
+	border-top: 1px solid #BBB;
+	padding-top: 30px;
+	}
+	
+/* Flash */
+
+.flash {
+	background-color: #fffa7f;
+	text-align: center;
+	border-top: 1px solid #DDD;
+	border-bottom: 1px solid #DDD;
+	margin: 5px auto -20px;
+	padding: 5px;
+	color: #666;
+	position: relative;
+	z-index: 1;
+}
+
+.no-pull {
+	margin-bottom: 5px;
+	}
+	
+/* Error list */
+
+.field_with_errors input {
+	border: 3px solid #b50000;
+	}
+	
+.field_with_errors label {
+	font-style: italic;
+	}
+	
+#error_list {
+	float: right;
+	width: 250px;
+	margin-top: 40px;
+	margin-right: 20px;
+	}
+	
+ul#errors li {
+	font-size: 12px;
+	color: #b50000;
+	margin-bottom: 5px;
 	}
 
 /* Forms */
@@ -67,6 +155,11 @@ form textarea {
 	padding: 5px;
 	}
 	
+input:focus, textarea:focus {
+	outline: 0;
+	background-color: #EFEFEF;
+	}
+	
 form select {
 	font-size: 16px;
 	margin-left: 5px;
@@ -80,6 +173,8 @@ form select {
 	}
 	
 #signup {
+	position: relative;
+	z-index: 0;
 	margin-top: -120px;
 	}
 	
@@ -106,15 +201,18 @@ form select {
 	}
 	
 /* Signup */
+
 #signup form input#user_submit {
 	width: 122px;
 	height: 42px;
+	font-size: 16px;
 	float: right;
 	margin-top: 20px;
 	background: transparent url('/images/signup-button.png') no-repeat;
 	border: none 0px;
 	padding: 0;
 	text-indent: -9999px;
+
 	}
 	
 #signup form input#user_submit:hover {
@@ -124,13 +222,14 @@ form select {
 #signup form input#user_submit:active {
 	background: transparent url('/images/signup-button.png') 0px -90px no-repeat;
 	}
-	
+
+
 /* 2-column layout */
 
 .left {
 	width: 500px;
-	margin: 10px;
-	padding: 20px;
+	margin: 0 10px;
+	padding: 0 20px;
 	float: left;
 	}
 
@@ -146,6 +245,10 @@ form select {
 .blog, .single { 
 	margin: 20px;
 	width: 840px;
+	}
+	
+.post {
+	margin-bottom: 50px;
 	}
 	
 h1.post-title {
@@ -175,8 +278,63 @@ h1.post-title {
 	padding: 20px;
 	border-top: 1px solid #BBB;
 	border-bottom: 1px solid #BBB;
+	font-size: 14px;
 	}
 	
 .post-content h2 {
 	font-size: 1.2em;
+	}
+	
+/* Control Panel */
+
+#header.cpanel {
+	border-top: 0 none;
+	height: 120px;
+	}
+
+#cpanel-logo {
+	width: 376px;
+	height: 100%;
+	margin: 0 auto;
+	background: transparent url('/images/cpanel-logo.png') 0 -110px no-repeat;
+	}
+
+.left h1 {
+	margin: 0 0 10px;
+	}
+	
+#sidebar ul {
+	list-style-type: none;
+	}
+	
+#users-list {
+	list-style-type: none;
+	padding: 0;
+	}
+	
+#users-list li {
+	padding: 10px 0;
+	border-bottom: 1px dotted #BBB;
+	}
+	
+	
+/* Editing Posts */
+
+form.edit_post input#post_submit {
+	width: 135px;
+	height: 42px;
+	float: right;
+	background: transparent url('/images/save-changes-button.png') no-repeat;
+	text-indent: -9999px;
+	border: 0 none;
+	margin: -25px 0 0;
+	padding: 0;
+	}
+
+form.edit_post input#post_submit:hover {
+	background: transparent url('/images/save-changes-button.png') 0 -45px no-repeat;
+	}
+
+form.edit_post input#post_submit:active {
+	background: transparent url('/images/save-changes-button.png') 0 -90px no-repeat;
 	}

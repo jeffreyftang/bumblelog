@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-	layout 'signin'
+	layout :choose_layout
 
 	before_filter :ensure_logged_in, :only => [:edit, :update, :show, :destroy]
 	before_filter :ensure_correct_user_or_admin, :only => [:edit, :update]
@@ -8,6 +8,14 @@ class UsersController < ApplicationController
 	
 	before_filter :non_signed_in_only, :only => [:new, :create]
 
+	def choose_layout
+		if action_name == 'new'
+			'signin'
+		else
+			'application'
+		end
+	end
+	
 	def new
   	@user = User.new
   	@title = 'Sign up'
@@ -74,6 +82,7 @@ class UsersController < ApplicationController
   end
   
   def index
+  	@users = User.all
   end
   
 

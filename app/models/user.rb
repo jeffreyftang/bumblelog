@@ -46,6 +46,19 @@ class User < ActiveRecord::Base
 		end
 	end
 	
+	def get_access_level_name
+		if owner?
+			'Site owner'
+		elsif admin?
+			'Administrator'
+		elsif member?
+			'Member'
+		else
+			'Viewer'
+		end
+	end
+			
+	
 	def self.authenticate(submitted_username, submitted_password)
 		user = find_by_username(submitted_username)
 		user && user.has_password?(submitted_password) ? user : nil
