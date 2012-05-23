@@ -1,0 +1,14 @@
+<div class="post-body">
+	<div class="post-content">
+		<%= raw(simple_format(post.content)) %>
+	</div>
+	<div class="meta">
+		<div class="meta-inner">
+			<span class="grey">Posted </span><%= post.published_date %><br />
+			<span class="grey">by </span><%= post.user.get_name %><br />
+			<% if current_user == post.user || current_user.admin? %>
+				<%= link_to 'Edit this post.', edit_post_path(post.id) %>
+			<% end %>
+		</div>
+	</div>
+</div>

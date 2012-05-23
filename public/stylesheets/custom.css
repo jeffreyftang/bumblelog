@@ -3,11 +3,22 @@ pre { display: none; }
 html, body {
 	height: 100%;
 	font-size: 16px;
+	font-family:"Helvetica Neue", Arial, Helvetica, sans-serif;
+	line-height: 1.5
+	}
+	
+#header {
+	display:none;
+	width: 740px;
+	height: 155px;
+	background: transparent url('/images/header.png') no-repeat;
+	margin: 0 auto;
 	}
 	
 #container {
 	width: 700px;
 	margin: 0 auto;
+	padding: 20px;
 	}
 
 #main {
@@ -17,9 +28,20 @@ html, body {
 	position: relative;
 	}
 	
+a {
+	color: #06C;
+	}
+	
 a:hover {
 	text-decoration: none;
-	color: #06C;
+	}
+	
+h1 {
+	font-size: 24px;
+	}
+	
+label {
+	font-weight: bold;
 	}
 	
 /* 2 Column Basic Layout */	
@@ -41,6 +63,10 @@ a:hover {
 	color: #666;
 	z-index: 1;
 }
+
+#flash {
+	margin-bottom: 5px;
+	}
 
 .icon {
 	margin: 0 auto;
@@ -73,6 +99,30 @@ ul#errors li {
 	color: #b50000;
 	margin-bottom: 5px;
 	}
+
+/* Edit forms */
+
+form input, form textarea {
+	margin: 0 0 .5em;
+	}
+	
+form input {
+	width: 450px;
+	font-size: 16px;
+	padding: 5px;
+	}
+	
+form textarea {
+	width: 450px;
+	height: 300px;
+	font-size: 13px;
+	padding: 5px;
+	}
+	
+form select {
+	font-size: 16px;
+	margin-left: 5px;
+	}
 	
 /* Signup Page */
 
@@ -88,7 +138,7 @@ ul#errors li {
 	width: 122px;
 	height: 42px;
 	float: right;
-	margin-top: 20px !important;
+	margin-top: 20px;
 	background: transparent url('/images/signup-button.png') no-repeat;
 	border: none 0px;
 	padding: 0;
@@ -128,7 +178,6 @@ form {
 	font-size: 24px;
 	padding: 5px;
 	width: 363px;
-	margin-top: 0;
 	}
 	
 #session_submit {
@@ -142,30 +191,6 @@ form {
 	margin: 0px auto;
 	}
 	
-/* Edit forms */
-
-form input, form textarea {
-	margin-top: 0 !important;
-	}
-	
-form input {
-	width: 450px;
-	font-size: 16px;
-	padding: 5px;
-	}
-	
-form textarea {
-	width: 450px;
-	height: 300px;
-	font-size: 13px;
-	padding: 5px;
-	}
-	
-form select {
-	font-size: 16px;
-	margin-left: 5px;
-	}
-	
 /* Editing posts */
 
 form.edit_post input#post_submit {
@@ -175,7 +200,7 @@ form.edit_post input#post_submit {
 	background: transparent url('/images/save-changes-button.png') no-repeat;
 	text-indent: -9999px;
 	border: 0 none;
-	margin: -35px 0 0 !important;
+	margin: -35px 0 0;
 	padding: 0;
 	}
 
@@ -186,6 +211,21 @@ form.edit_post input#post_submit:hover {
 form.edit_post input#post_submit:active {
 	background: transparent url('/images/save-changes-button.png') 0 -90px no-repeat;
 	}
+	
+/* Creating posts */
+	form.new_post #publish-button, form.new_post #draft-button {
+		
+	}
+	
+	form.new_post #publish-button input#post_submit, form.new_post #draft-button input#post_submit {
+		width: 135px;
+		height: 40px;
+		float: right;
+		margin-left: 10px;
+		margin-top: 10px !important;
+	}
+		
+
 
 /* Sidebar */
 

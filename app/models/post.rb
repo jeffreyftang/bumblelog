@@ -41,6 +41,12 @@ class Post < ActiveRecord::Base
 		path = '/' + published_at.strftime('%Y') + '/' + published_at.strftime('%m') + '/' + slug
 	end
 	
+	def published_date
+		if published_at
+			date = published_at.strftime('%-d') + ' ' + published_at.strftime('%b') + ' ' + published_at.strftime('%Y')
+		end
+	end
+	
 	private
 	
 		def set_slug

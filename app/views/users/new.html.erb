@@ -3,7 +3,7 @@
 		<%= image_tag 'signup-icon.png', :alt => 'Create an Account' %>
 	</div>
 	<% if @user.errors.any? %>
-			<div id="error_list">
+			<div id="error-list">
 				<ul id="errors">
 					<% @user.errors.full_messages.each do |m| %>
 						<li><%= m %></li>

@@ -1,0 +1,182 @@
+pre {
+	display: none;
+	}
+	
+body {
+	font-size: 16px;
+	font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
+	line-height: 1.5;
+	margin: 0;
+	}
+	
+#main {
+	width: 880px;
+	margin: 20px auto;
+	}
+	
+a {
+	text-decoration: none;
+	color: #b50000;
+	}
+	
+a:hover {
+	text-decoration: underline;
+	}
+	
+a:visited {
+	color: #b50000;
+	}
+
+span.grey {
+	color: #8f8f8f;
+	}
+	
+/* Header */
+
+#header {
+	height: 200px;
+	margin: 0;
+	background-color: #BBB;
+	}
+
+/* Forms */
+
+form {
+	width: 500px;
+	}
+
+form label {
+	font-weight: bold;
+	}
+
+form input, form textarea {
+	margin: 0 0 .5em;
+	border: 1px solid #BBB;
+	}
+	
+form input {
+	width: 490px;
+	font-size: 16px;
+	padding: 5px;
+	}
+	
+form textarea {
+	width: 490px;
+	height: 300px;
+	font-size: 13px;
+	padding: 5px;
+	}
+	
+form select {
+	font-size: 16px;
+	margin-left: 5px;
+	}
+	
+/* Signin, Signup */
+
+#signin, #signup {
+	margin: 90px auto 0;
+	width: 376px;
+	}
+	
+#signup {
+	margin-top: -120px;
+	}
+	
+#signin form, #signup form {
+	width: 376px;
+	margin-top: 10px;
+	}
+	
+#signin form input, #signup form input {
+	width: 363px;
+	font-size: 24px;
+	}
+	
+/* Signin */
+
+#session_submit {
+	height: 1px;
+	width: 1px;
+	margin-left: -9999px;
+	}
+	
+#signup-message {
+	margin-top: -10px;
+	}
+	
+/* Signup */
+#signup form input#user_submit {
+	width: 122px;
+	height: 42px;
+	float: right;
+	margin-top: 20px;
+	background: transparent url('/images/signup-button.png') no-repeat;
+	border: none 0px;
+	padding: 0;
+	text-indent: -9999px;
+	}
+	
+#signup form input#user_submit:hover {
+	background: transparent url('/images/signup-button.png') 0px -45px no-repeat;
+	}
+
+#signup form input#user_submit:active {
+	background: transparent url('/images/signup-button.png') 0px -90px no-repeat;
+	}
+	
+/* 2-column layout */
+
+.left {
+	width: 500px;
+	margin: 10px;
+	padding: 20px;
+	float: left;
+	}
+
+#sidebar {
+	width: 260px;
+	padding: 20px;
+	margin: 10px;
+	float: left;
+	}
+	
+/* Blog */
+
+.blog, .single { 
+	margin: 20px;
+	width: 840px;
+	}
+	
+h1.post-title {
+	display: block;
+	margin: 0 10px;
+	width: 500px;
+	}
+	
+.post-body {
+	margin: 0;
+	}
+	
+.post-content {
+	width: 500px;
+	margin: 0 10px;
+	float: left;
+	}
+	
+.meta {
+	width: 250px;
+	padding-left: 50px;
+	margin: 15px 10px;
+	float: left;
+	}
+
+.meta-inner {
+	padding: 20px;
+	border-top: 1px solid #BBB;
+	border-bottom: 1px solid #BBB;
+	}
+	
+.post-content h2 {
+	font-size: 1.2em;
+	}

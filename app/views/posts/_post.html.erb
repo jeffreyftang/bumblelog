@@ -1,15 +1,6 @@
 <div class="post">
 	<section>
-		<h1 class="post_title"><%= link_to post.title, post.get_path %></h1>
-		by <%= post.user.get_name %><br />
-		<%= post.published_at %>
-		<div class="post_content">
-			<p>
-				<%= raw(post.content) %>
-			</p>
-		</div>
+		<h1 class="post-title"><%= link_to post.title, post.get_path %></h1>
+		<%= render 'posts/post_innards', :post => post %>
 	</section>
-	<% if current_user == post.user || current_user.admin? %>
-		<%= link_to 'Edit this post.', edit_post_path(post.id) %>
-	<% end %>
 </div>

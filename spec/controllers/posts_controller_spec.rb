@@ -214,7 +214,7 @@ describe PostsController do
   		it "should show the post" do
   			get :show, :id => @post
   			response.should have_selector('h1', :content => @post.title)
-  			response.should have_selector('div#post_content', :content => @post.content)
+  			response.should have_selector('div.post-content', :content => @post.content)
   		end 
   		
   		describe "showing draft posts" do
