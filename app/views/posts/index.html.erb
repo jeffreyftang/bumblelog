@@ -4,15 +4,16 @@
 		<% @posts.each do |post| %>
 			<li <%= 'class=draft' unless post.published? %> >
 				<div class="postlet">
-					<h2><%= link_to post.title, post.get_path %></h2>
 					<% if post.published? %>
+						<h2><%= link_to post.title, post.get_path %></h2>
 						Posted <span class="grey"><%= post.published_date %></span>
 					<% else %>
+						<h2><%= post.title %></h2>
 						Draft updated <span class="grey"><%= post.last_modified_date %></span>
 					<% end %>	
 					by <%= link_to post.user.get_name, user_path(post.user) %>
-					<% if current_user.admin? %>
-						&middot; <%= link_to 'Edit', edit_post_path(post) %>
+					<% if current_user.admin? || current_user == post.user %>
+						&middot; <strong><%= link_to 'Edit', edit_post_path(post) %></strong>
 					<% end %>					
 				</div>
 			</li>

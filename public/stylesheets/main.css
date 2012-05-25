@@ -106,7 +106,7 @@ span.grey {
 	
 /* Error list */
 
-.field_with_errors input {
+.field_with_errors input, .field_with_errors textarea {
 	border: 3px solid #b50000;
 	}
 	
@@ -168,9 +168,10 @@ form select {
 .actions input {
 	background-color: #017001;
 	color: #FFF;
-	width: 150px;
+	width: 150px !important;
 	float: right;
 	margin-left: 10px;
+	font-size: 16px !important;
 	}
 
 .actions #draft-button input {
@@ -178,7 +179,7 @@ form select {
 	}
 	
 .actions input:hover {
-	background-color: #01a001;
+	background-color: #014D01;
 	}
 		
 .actions #draft-button input:hover {
@@ -206,6 +207,10 @@ form select {
 #signin form input, #signup form input {
 	width: 363px;
 	font-size: 24px;
+	}
+
+#signup form .actions input {
+	margin-top: 20px;
 	}
 	
 /* Signin */

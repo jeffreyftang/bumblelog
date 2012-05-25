@@ -4,7 +4,7 @@
 		<% @users.each do |user| %>
 			<li>
 				<div class="user">
-					<strong><%= link_to user.get_name, user_path(user) %></strong> <%= '(' + user.username + ')' %>
+					<strong><%= link_to user.get_name, user_path(user) %></strong> <span class="grey"><em>(<%= user.username %>)</em></span>
 							<% if current_user.admin? %>
 									| <%= link_to 'Edit', edit_user_path(user) %>
 							<% end %>
