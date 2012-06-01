@@ -17,7 +17,7 @@
 			<% end %>
 		<div id="main">
 			<%= yield %>
-			<% if cpanel? %>
+			<% if cpanel? && signed_in? %>
 				<%= render 'shared/sidebar' %>
 			<% end %>
 			<div style="clear:both"></div>

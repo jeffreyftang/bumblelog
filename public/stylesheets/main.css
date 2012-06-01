@@ -361,6 +361,21 @@ h1.post-title {
 	margin:0;
 	}
 	
+/* Homepage */
+
+#home {
+	width: 558px;
+	margin: 0 auto;
+	}
+	
+#home #navbar {
+	width: 290px;
+	text-align: center;
+	margin: 10px auto 20px;
+	float: none;
+	padding-left: 22px;
+	}
+	
 	
 /* Editing Posts */
 /*
