@@ -5,7 +5,7 @@ class PagesController < ApplicationController
 	before_filter :ensure_logged_in
 
   def home
-  	@title = 'Welcome'
+  	@title = 'Apprentice Me'
   end
 
   def blog

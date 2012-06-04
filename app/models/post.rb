@@ -36,7 +36,7 @@ class Post < ActiveRecord::Base
 		end
 	end
 	
-	def get_path
+	def get_path # Pretty URL - mysite.com/2012/05/post-slug
 		unless published_at.blank?
 			path = '/' + published_at.strftime('%Y') + '/' + published_at.strftime('%m') + '/' + slug
 		end

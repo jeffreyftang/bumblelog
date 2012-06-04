@@ -12,7 +12,8 @@ module SessionsHelper
 	def sign_out
 		session[:remember_token] = nil
 		self.current_user = nil
-		redirect_to root_path
+		flash[:success] = 'Signed out.'
+		redirect_to signin_path
 	end
 	
 	def current_user=(user)

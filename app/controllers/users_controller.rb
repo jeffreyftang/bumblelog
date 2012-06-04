@@ -29,6 +29,7 @@ class UsersController < ApplicationController
   def create
   	@user = User.new(params[:user])
   	if @user.save
+      # The first user is automatically designated as the site owner.
   		if @user == User.first && @user == User.last
   			@user.make_owner
   		end
@@ -58,7 +59,7 @@ class UsersController < ApplicationController
   	
   	# Set the access level manually if the current user is an admin
   	if current_user.admin?
-  		@user.access_level = access_lvl
+  		@user.access_level = access_lvl unless  @user.owner?
   	end
   	
   	if @user.save
