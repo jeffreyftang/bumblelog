@@ -225,31 +225,6 @@ form select {
 #signup-message {
 	margin-top: -10px;
 	}
-	
-/* Signup */
-
-/* #signup form input#user_submit {
-	width: 122px;
-	height: 42px;
-	font-size: 16px;
-	float: right;
-	margin-top: 20px;
-	background: transparent url('/images/signup-button.png') no-repeat;
-	border: none 0px;
-	padding: 0;
-	text-indent: -9999px;
-
-	}
-	
-#signup form input#user_submit:hover {
-	background: transparent url('/images/signup-button.png') 0px -45px no-repeat;
-	}
-
-#signup form input#user_submit:active {
-	background: transparent url('/images/signup-button.png') 0px -90px no-repeat;
-	}
-
-*/
 
 /* 2-column layout */
 
@@ -360,6 +335,24 @@ h1.post-title {
 #posts-list h2 {
 	margin:0;
 	}
+
+/* User Show Page */
+
+#user-posts {
+	margin-top: 20px;
+	padding-top: 10px;
+	border-top: 1px solid #BBB;
+}
+
+#user-posts li {
+	list-style-type: none;
+	padding: 10px 0;
+	border-bottom: 1px dotted #BBB;
+}
+
+#user-posts h2, #user-posts li h3 {
+	margin: 0;
+}
 	
 /* Homepage */
 
@@ -375,26 +368,3 @@ h1.post-title {
 	float: none;
 	padding-left: 22px;
 	}
-	
-	
-/* Editing Posts */
-/*
-form.edit_post input#post_submit {
-	width: 135px;
-	height: 42px;
-	float: right;
-	background: transparent url('/images/save-changes-button.png') no-repeat;
-	text-indent: -9999px;
-	border: 0 none;
-	margin: -25px 0 0;
-	padding: 0;
-	}
-
-form.edit_post input#post_submit:hover {
-	background: transparent url('/images/save-changes-button.png') 0 -45px no-repeat;
-	}
-
-form.edit_post input#post_submit:active {
-	background: transparent url('/images/save-changes-button.png') 0 -90px no-repeat;
-	}
-*/
