@@ -58,7 +58,7 @@ class PostsController < ApplicationController
   	else
   		@post = Post.find_by_slug(params[:slug])
   		unless params[:year].to_i == @post.published_at.year && params[:month].to_i == @post.published_at.month
-  			@post = nil
+  			raise ActiveRecord::RecordNotFound.new('not found')
   		end
   	end
   	raise ActiveRecord::RecordNotFound.new('not found') unless @post.published?	
