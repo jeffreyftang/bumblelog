@@ -14,7 +14,6 @@ class Post < ActiveRecord::Base
 	validates :slug, :format => { :with => slug_regex },
 									 :allow_blank => true
 									 
-	
 	default_scope :order => 'posts.published_at DESC'
 	
 	before_save :set_slug
@@ -28,7 +27,7 @@ class Post < ActiveRecord::Base
 		self.published = false
 		self.save
 	end
-	
+
 	def published_status_as_string
 		if self.published?
 			'Published'
@@ -71,4 +70,4 @@ class Post < ActiveRecord::Base
 			input.strip.downcase.gsub(/[\s.\/_]/, ' ').squeeze(' ').gsub(/[\s]/, '-').gsub(/[^\w-]/, '')
 		end
 
-end
+end	

@@ -7,14 +7,10 @@
   	<%= csrf_meta_tag %>
 	</head>
 	<body>
-		<% unless cpanel? %>
-			<%= render 'shared/header' %>
-		<% else %>
-			<%= render 'shared/cpanel_header' %>
-		<% end %>
+		<%= render 'shared/matching_header' %>
 		<% flash.each do |key, value| %>
-				<div class="flash no-pull"><%= raw(value) %></div>
-			<% end %>
+			<div class="flash no-pull"><%= raw(value) %></div>
+		<% end %>
 		<div id="main">
 			<%= yield %>
 			<% if cpanel? && signed_in? %>
