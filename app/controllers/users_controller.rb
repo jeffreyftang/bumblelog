@@ -59,7 +59,7 @@ class UsersController < ApplicationController
   	
   	# Set the access level manually if the current user is an admin
   	if current_user.admin?
-  		@user.access_level = access_lvl unless  @user.owner?
+  		@user.access_level = access_lvl unless access_lvl.blank?
   	end
   	
   	if @user.save

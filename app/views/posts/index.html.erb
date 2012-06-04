@@ -13,7 +13,7 @@
 					<% end %>	
 					by <%= link_to post.user.get_name, user_path(post.user) %>
 					<% if current_user.admin? || current_user == post.user %>
-						&middot; <strong><%= link_to 'Edit', edit_post_path(post) %></strong>
+						&middot; <strong><%= link_to 'Edit', edit_post_path(post) %></strong> &middot; <strong><%= link_to 'Delete', post, :method => :delete, :confirm => 'Are you sure you want to delete this post?' %></strong>
 					<% end %>					
 				</div>
 			</li>
