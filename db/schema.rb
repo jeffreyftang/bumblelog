@@ -11,15 +11,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120521224736) do
+ActiveRecord::Schema.define(:version => 20120604194243) do
 
   create_table "posts", :force => true do |t|
     t.string   "title"
-    t.string   "content"
+    t.text     "content",      :limit => 255
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "published",    :default => false
+    t.boolean  "published",                   :default => false
     t.string   "slug"
     t.datetime "published_at"
   end
