@@ -56,8 +56,19 @@ class User < ActiveRecord::Base
 			'Viewer'
 		end
 	end
+
+  def get_sorted_posts
+    sorted_posts = posts
+    sorted_posts.sort_by! do |p|
+      if p.published?
+        p.published_at
+      else
+        p.updated_at
+      end
+    end
+    sorted_posts.reverse!
+  end
 			
-	
 	def self.authenticate(submitted_username, submitted_password)
 		user = find_by_username(submitted_username)
 		user && user.has_password?(submitted_password) ? user : nil

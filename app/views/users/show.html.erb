@@ -6,7 +6,7 @@
 	<div id="user-posts">
 		<h2>Posts and Drafts</h2>
 		<% unless @user.posts.empty? %>
-			<% @user.posts.each do |post| %>
+			<% @user.get_sorted_posts.each do |post| %>
 				<li <%= 'class=draft' unless post.published? %> >
 					<div class="postlet">
 						<% if post.published? %>
