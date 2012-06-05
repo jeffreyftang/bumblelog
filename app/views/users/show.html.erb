@@ -7,7 +7,7 @@
 		<h2>Posts and Drafts</h2>
 		<% unless @user.posts.empty? %>
 			<% @user.posts.each do |post| %>
-				<li>
+				<li <%= 'class=draft' unless post.published? %> >
 					<div class="postlet">
 						<% if post.published? %>
 							<h3><%= link_to post.title, post.get_path %></h3>

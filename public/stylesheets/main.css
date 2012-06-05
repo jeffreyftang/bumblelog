@@ -340,18 +340,27 @@ h1.post-title {
 
 #user-posts {
 	margin-top: 20px;
+	margin-left: -10px;
 	padding-top: 10px;
 	border-top: 1px solid #BBB;
 }
 
 #user-posts li {
 	list-style-type: none;
-	padding: 10px 0;
+	padding: 10px;
 	border-bottom: 1px dotted #BBB;
+}
+
+#user-posts h2 {
+	padding-left: 10px;
 }
 
 #user-posts h2, #user-posts li h3 {
 	margin: 0;
+}
+
+#user-posts li.draft {
+	background-color: #EFEFEF;
 }
 	
 /* Homepage */
