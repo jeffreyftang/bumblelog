@@ -1,6 +1,6 @@
 <div class="post-body">
 	<div class="post-content">
-		<%= raw(simple_format(post.content)) %>
+		<%= raw(simple_format(post.content, {}, :sanitize => false)) %>
 	</div>
 	<div class="meta">
 		<div class="meta-inner">
